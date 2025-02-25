@@ -30,7 +30,7 @@ color:Colors.secondary
     borderTopRightRadius:15,
     borderTopLeftRadius:15,
     paddingHorizontal:hp('3%'),
-      paddingTop:hp('5%')
+      paddingTop:hp('3%')
     
   },
   fullName:{
@@ -45,6 +45,43 @@ color:Colors.secondary
   textField:{
     alignItems:'center',
     marginBottom:hp('3%'),
+  },
+  dropdownContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: 50,
+    borderRadius: 16,
+    paddingHorizontal: 10,
+    backgroundColor: '#3E3E55',
+  },
+  label: {
+    fontFamily: TextStyles.regularText,
+    fontSize: 14,
+    color: '#858597',
+  },
+  dropdown: {
+    marginLeft:wp('35%'),
+    flex: 1,
+    fontFamily: TextStyles.mediumText,
+    fontSize: 16,
+    color: Colors.secondary,
+  },
+  selectedText:{
+    flex: 1,
+    fontFamily: TextStyles.mediumText,
+    fontSize: 16,
+    color: '#FFFFFF',
+  },
+  dropdownItem: {
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+  },
+  dropdownItemText: {
+    fontSize: 16,
+    color: '#000', 
+    fontFamily: TextStyles.mediumText,
   },
   forgotPasswordText:{
     fontFamily:TextStyles.mediumText,

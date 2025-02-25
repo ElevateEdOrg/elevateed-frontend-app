@@ -13,6 +13,7 @@ export const image={
     USER6: require('../assets/image/user6.jpg'),
     USER7: require('../assets/image/user7.jpg'),
     USER8: require('../assets/image/user8.jpg'),
+    NOIMAGE:require('../assets/image/placeholder_noimage.png')
 }
 
 export const icons={

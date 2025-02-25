@@ -1,7 +1,7 @@
 export const Endpoints = {
     //Auth module
     LOGIN: 'login',
-    REGISTER: 'registration',
+    REGISTER: 'register',
     EMAILVERIFY: 'verify-email',
     FORGOT_PASSWORD: 'forgot-password',
     VERIFY_FORGOT_PASS: 'verify-forgot-password-otp',

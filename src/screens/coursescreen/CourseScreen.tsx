@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, SafeAreaView } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCourses } from '../../state/courses';
 import { useAppDispatch } from '../../state/hooks';
+import Config from 'react-native-config';
+import { image } from '../../constants/images';
+import { styles } from './Styles';
+import LabelComponent from '../../components/LableComponent';
 
 const CourseScreen = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useAppDispatch();
-
+// console.log('hiiiiiiiii: {Config.BASE_URL}',Config.BASE_URL)
   useEffect(() => {
+   
     getCoursesAPICall();
   }, []);
 
@@ -38,7 +43,7 @@ const getCoursesAPICall = async () => {
       
       setLoading(false);
       if (response) {
-        
+        setCourses(response.data);
       } else {
        console.log('ERORRRR');
       }
@@ -52,8 +57,10 @@ const getCoursesAPICall = async () => {
   const renderItem = ({ item }) => (
     <View style={styles.card}>
       <Image 
-        source={item.banner_image ? { uri: item.banner_image } : require('../../assets/image/person.png')} 
+        source={item.banner_image ? { uri: item.banner_image } : image.NOIMAGE} 
         style={styles.bannerImage} 
+        
+        
       />
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.description}>{item.description}</Text>
@@ -62,62 +69,28 @@ const getCoursesAPICall = async () => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <LabelComponent value='Courses' style={styles.headerText}/>
+      </View>
       {loading ? (
         <ActivityIndicator size="large" color="#3D5CFF" />
       ) : (
-        // <FlatList 
-        //   data={courses} 
-        //   keyExtractor={item => item.id} 
-        //   renderItem={renderItem} 
-        // />
-        <Text>
-        hellooooooo
-      </Text>
+        <FlatList 
+          data={courses} 
+          keyExtractor={item => item.id.toString()} 
+          renderItem={renderItem} 
+          numColumns={2}
+        columnWrapperStyle={styles.row} 
+        style={styles.cardContainer}
+        />
+     
       )}
       
-    </View>
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5F5F5',
-    padding: 10,
-  },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    padding: 15,
-    marginVertical: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  bannerImage: {
-    width: '100%',
-    height: 150,
-    borderRadius: 10,
-    marginBottom: 10,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  description: {
-    fontSize: 14,
-    color: '#666',
-    marginVertical: 5,
-  },
-  instructor: {
-    fontSize: 12,
-    color: '#888',
-    fontStyle: 'italic',
-  },
-});
+
 
 export default CourseScreen;

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { axiosInstance } from "../../utils/AxiosInstance";
 import { headers } from "../../utils/commonHeaders";
 import { Endpoints } from '../../utils/Endpoints';
+import { axiosInstance } from '../../utils/axiosInstanceCourse';
 
 interface categoryReducerProps {
     coursesData: Object;
