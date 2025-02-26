@@ -9,6 +9,7 @@ import ForgotPasswordPage from "../screens/forgotpassword/ForgotPasswordScreen";
 import Dashboard from "../screens/dashboard/DashboardScreen";
 import VerifyOTPPage from "../screens/otpscreen/OtpScreen";
 import MessageScreen from "../screens/message/MessageScreen";
+import ProfileScreen from "../screens/profilescreen/ProfilePage";
 
 
 export type RootStackParamList = {
@@ -18,8 +19,9 @@ export type RootStackParamList = {
   SignupScreen: undefined;
   ForgotPasswordPage: undefined;
   Dashboard: undefined;
-  VerifyOTPPage: undefined;
+  VerifyOTPScreen: { email: string };
   MessageScreen: undefined;
+  ProfileScreen: undefined;
 
   
 };
@@ -34,7 +36,7 @@ const AppNavigator = () => {
         <Stack.Screen name="LoginScreen" component={LoginPage} options={{ headerShown: false }} />
         <Stack.Screen name="SignupScreen" component={SignupPage} options={{ headerShown: false }} />
         <Stack.Screen name="ForgotPasswordPage" component={ForgotPasswordPage} options={{ headerShown: false }} />
-        <Stack.Screen name="VerifyOTPPage" component={VerifyOTPPage} options={{ headerShown: false }} />
+        <Stack.Screen name="VerifyOTPScreen" component={VerifyOTPPage} options={{ headerShown: false }} />
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
         <Stack.Screen name="MessageScreen" component={MessageScreen} options={{ headerShown: false }} />
         

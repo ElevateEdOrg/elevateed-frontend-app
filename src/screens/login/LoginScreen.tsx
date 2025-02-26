@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity, StatusBar, SafeAreaView} from 'react-native';
 
-
+import Snackbar from 'react-native-snackbar';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { styles } from './Styles';
@@ -10,6 +10,7 @@ import TextfieldComponent from '../../components/TextfieldComponent';
 import RactangularButton from '../../components/RectangularButton';
 import { useAppDispatch } from '../../state/hooks';
 import { login } from '../../state/auth/reducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface LoginPageProps {
   navigation: NativeStackNavigationProp<any>;
@@ -20,68 +21,59 @@ const LoginPage = ({navigation}: LoginPageProps) => {
   const [email, setEmailText] = useState<string>('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-    // const handleSignIn = async () => {
-    //   let valid = true;
-  
-  
-    //   if (valid) {
-    //     const dataObj = {
-    //       email: email,
-    //       password: password
-         
-    //     };
-  
-    
-        // setLoading(true);
-  
-    //     const action = login(dataObj);
-    //     dispatch<any>(action)
-    //       .unwrap()
-    //       .then(async response => {
-    //         setLoading(false);
-    //         if (response) {
-    //           if (response.status === 200) {
-    //             Snackbar.show({
-    //               text: 'login Successfull',
-    //               duration: Snackbar.LENGTH_SHORT,
-    //             });
-    //             await AsyncStorage.setItem('userSignedIn', 'true');
-    //             if (response.data.access_token) {
-    //               await AsyncStorage.setItem(
-    //                 'accessToken',
-    //                 response.data.access_token,
-    //               );
-    //             }
-    //             if (
-    //               response.data.user &&
-    //               response.data.user.name &&
-    //               response.data.user.email &&
-    //               response.data.user.mobile &&
-    //               response.data.user.image_full_path
-    //             )
-            
-       
-    //           } else if (response.status === 204) {
-    //             const requestData = JSON.parse(response.config.data);
-    //             Snackbar.show({
-    //               text: 'Email not verified verification OTP sent to mail',
-    //               duration: Snackbar.LENGTH_SHORT,
-    //             });
-              
-    //           } else {
-    //             Snackbar.show({
-    //               text: response.data.message,
-    //               duration: Snackbar.LENGTH_SHORT,
-    //             });
-    //           }
-    //         }
-    //       })
-    //       .catch((error: any) => {
-    //         setLoading(false);
-    //         console.log('Fetch login Deatils Error' + JSON.stringify(error));
-    //       });
-    //   }
-    // };
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  // Handle Login with validation
+  const handleSignIn = async () => {
+    // Check if fields are empty
+    if (!email.trim()) {
+      Snackbar.show({ text: 'Email is required', duration: Snackbar.LENGTH_SHORT });
+      return;
+    }
+    if (!isValidEmail(email)) {
+      Snackbar.show({ text: 'Enter a valid email', duration: Snackbar.LENGTH_SHORT });
+      return;
+    }
+    if (!password.trim()) {
+      Snackbar.show({ text: 'Password is required', duration: Snackbar.LENGTH_SHORT });
+      return;
+    }
+    if (password.length < 6) {
+      Snackbar.show({ text: 'Password must be at least 6 characters', duration: Snackbar.LENGTH_SHORT });
+      return;
+    }
+
+ 
+    const dataObj = { email, password };
+
+    setLoading(true);
+
+    try {
+      const response = await dispatch<any>(login(dataObj)).unwrap();
+      setLoading(false);
+
+      if (response && response.status === 'success') {
+        Snackbar.show({ text: 'Login Successful', duration: Snackbar.LENGTH_SHORT });
+        await AsyncStorage.setItem('userSignedIn', 'true');
+
+        if (response.access_token) {
+          await AsyncStorage.setItem('accessToken', response.access_token);
+        }
+        
+        navigation.replace('Dashboard');
+      } else if (response.status === 'error') {
+        Snackbar.show({ text: 'Email not verified. OTP sent to mail.', duration: Snackbar.LENGTH_SHORT });
+      } else {
+        Snackbar.show({ text: response.data.message || 'Login failed', duration: Snackbar.LENGTH_SHORT });
+      }
+    } catch (error) {
+      setLoading(false);
+      Snackbar.show({ text: 'Error logging in. Try again!', duration: Snackbar.LENGTH_SHORT });
+      console.error('Login Error:', error);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -97,7 +89,7 @@ const LoginPage = ({navigation}: LoginPageProps) => {
           <LabelComponent value="Forgot password?" style={styles.forgotPasswordText} />
           </TouchableOpacity>
 
-     <RactangularButton title={'Log in'} onPress={()=>navigation.navigate('Dashboard')} style={styles.loginButton}/>
+     <RactangularButton title={'Log in'} onPress={handleSignIn} style={styles.loginButton} loading={loading} disabled={loading}/>
         <View style={styles.footer}>
         <LabelComponent value="Don't have an account?" style={styles.footerText1}/>
         <TouchableOpacity onPress={()=>navigation.navigate('SignupScreen')}>

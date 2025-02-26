@@ -68,9 +68,34 @@ export const register = createAsyncThunk(
   );
 
 
-  export const login = createAsyncThunk(Endpoints.LOGIN, async params => {
+  export const login = createAsyncThunk(Endpoints.LOGIN, async(params: { email: string; password: string }) => {
   try {
     const response = await axiosInstance.post('login', params);
+    console.log("resoponse dataaaa   "+ response.data);
+    
+    return response.data;
+  } catch (err: any) {
+    console.log('RegisterAPI_ERROR :: ' + err.message);
+  }
+});
+  export const forgotPassword = createAsyncThunk(Endpoints.FORGOT_PASSWORD, async(params: { email: string}) => {
+  try {
+    const response = await axiosInstance.post('forgot-password', params);
+    console.log("resoponse dataaaa   "+ response.data);
+    
+    return response.data;
+  } catch (err: any) {
+    console.log('RegisterAPI_ERROR :: ' + err.message);
+  }
+});
+
+
+  export const resetPassword = createAsyncThunk(Endpoints.RESET_PASSWORD, async(params: { email: string, otp:string,new_password:string}) => {
+
+  try {
+    const response = await axiosInstance.post('reset-password', params);
+    console.log("resoponse dataaaa   "+ response.data);
+    
     return response.data;
   } catch (err: any) {
     console.log('RegisterAPI_ERROR :: ' + err.message);
@@ -120,6 +145,31 @@ export const register = createAsyncThunk(
             state.data.user = user;
           })
           .addCase(login.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message || '';
+          })
+
+          .addCase(forgotPassword.pending, state => {
+            state.loading = true;
+            state.error = '';
+          })
+          .addCase(forgotPassword.fulfilled, (state, action) => {
+            state.loading = false;
+            state.forgotPwdData = action.payload;
+          })
+          .addCase(forgotPassword.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.error.message || '';
+          })
+          .addCase(resetPassword.pending, state => {
+            state.loading = true;
+            state.error = '';
+          })
+          .addCase(resetPassword.fulfilled, (state, action) => {
+            state.loading = false;
+            state.forgotPwdData = action.payload;
+          })
+          .addCase(resetPassword.rejected, (state, action) => {
             state.loading = false;
             state.error = action.error.message || '';
           })

@@ -9,10 +9,11 @@ import {TextStyles} from '../../constants/textstyle';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:Colors.background
   },
   topHalf: {
     flexDirection: 'row',
-    height: hp('26%'),
+    height: hp('18%'),
     backgroundColor: '#3D5CFF',
     justifyContent: 'space-between',
   },
@@ -32,11 +33,15 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: Colors.secondary,
   },
+  carousalComponent:{
+    marginBottom:hp("3%")
+  },
   carousalTitle: {
     fontFamily: TextStyles.boldText,
     fontWeight: 800,
     fontSize: 20,
     color: Colors.secondary,
+   
   },
   carousalTitle1: {
     fontFamily: TextStyles.boldText,
@@ -52,46 +57,39 @@ export const styles = StyleSheet.create({
   },
   bottomHalf: {
     flex: 1,
-    paddingTop: hp('10%'),
-    backgroundColor: Colors.background,
-  },
-  card: {
-    position: 'absolute',
-    top: hp('17%'),
-    alignSelf: 'center',
-    width: wp('90%'),
-    height: hp('12%'),
-    backgroundColor: '#E9E9E9',
-
-    borderRadius: 10,
-    justifyContent: 'center',
-    paddingHorizontal: wp('4%'),
-    elevation: 16,
-    shadowColor: '#fff',
-    shadowOffset: {width: 0, height: 15},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  cardContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    paddingTop: hp('3%'),
    
+    paddingHorizontal:wp('3%'),
+
   },
-  cardText: {
-    fontFamily:TextStyles.veryextraBoldText,
-    fontSize: 12,
-    fontWeight:600,
-    color: '#1F1F39',
+  categoryButton: {
+    backgroundColor: "#2E2E45",
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    marginRight: 8,
+    marginVertical: 10,
   },
-  cardText1: {
-    fontFamily:TextStyles.boldText,
-    fontSize: 20,
-    fontWeight:'bold',
-    color: '#1F1F39',
+  selectedCategory: {
+    backgroundColor: "#3D5CFF",
   },
-  progressContainer: {
-    marginTop: 10,
-    width: '100%',
+  categoryText: {
+    color: "#A0A0B0",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  selectedCategoryText: {
+    color: "#FFF",
+  },
+  browseCourseCard:{
+    marginBottom:hp("6%")
+  },
+
+  rvContainer:{
+    marginBottom:hp("3%")
+  },
+  rcContainer:{
+    marginBottom:hp("3%"),
+   
   },
 });

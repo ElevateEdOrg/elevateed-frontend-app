@@ -7,7 +7,7 @@ import authSlice from './auth';
 const store = configureStore({
   reducer: {
   coursesReducer: coursesSlice,
-  authReducer:authSlice
+  authReducer:authSlice,
   },
 });
 

@@ -13,11 +13,18 @@ const SplashScreen: React.FC<Props> = ({navigation}) => {
   useEffect(() => {
     const checkWalkthrough = async () => {
       const hasSeenWalkthrough = await AsyncStorage.getItem("hasSeenWalkthrough");
-      if (hasSeenWalkthrough) {
-        navigation.replace("LoginScreen");
-      } else {
-        navigation.replace("OnBoardingScreen");
+      const isUserLogin = await AsyncStorage.getItem("userSignedIn");
+      if(isUserLogin){
+       navigation.replace('Dashboard');
+      }else{
+        if (hasSeenWalkthrough) {
+
+          navigation.replace("LoginScreen");
+        } else {
+          navigation.replace("OnBoardingScreen");
+        }
       }
+     
     };
 
     setTimeout(checkWalkthrough, 2000);

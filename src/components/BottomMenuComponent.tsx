@@ -13,6 +13,11 @@ import {Colors} from '../constants/colors';
 import MessageScreen from '../screens/message/MessageScreen';
 import ContactsScreen from '../screens/message/ContactScreen';
 import CourseScreen from '../screens/coursescreen/CourseScreen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import ProfileScreen from '../screens/profilescreen/ProfilePage';
 
 const Tab = createBottomTabNavigator();
 
@@ -123,7 +128,7 @@ const BottomNavigation: React.FC = () => {
         />
         <Tab.Screen
           name="Profile"
-          component={OnBoardingScreen}
+          component={ProfileScreen}
           options={{
             tabBarLabel: ({focused}) => (
               <Text
@@ -152,7 +157,7 @@ const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: Colors.background,
     position: 'absolute',
-    height: 80,
+    height: hp('10%'),
     borderWidth: 0,
     borderColor: 'transparent',
     borderTopRightRadius: 20,

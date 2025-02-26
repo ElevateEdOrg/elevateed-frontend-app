@@ -13,7 +13,7 @@ const CourseScreen = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useAppDispatch();
-// console.log('hiiiiiiiii: {Config.BASE_URL}',Config.BASE_URL)
+console.log('hiiiiiiiii: {Config.BASE_URL}',Config.BASE_URL)
   useEffect(() => {
    
     getCoursesAPICall();

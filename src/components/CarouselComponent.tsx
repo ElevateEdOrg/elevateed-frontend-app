@@ -10,7 +10,10 @@ import {
 } from 'react-native-responsive-screen';
 
 const { width } = Dimensions.get("window");
+interface CarousalComponentProps {
 
+  style?:object
+}
 const data = [
   {
     id: "1",
@@ -39,14 +42,14 @@ const data = [
   },
 ];
 
-const CarouselComponent = () => {
+const CarouselComponent : React.FC<CarousalComponentProps> = ({ style }) =>  {
   const progress = useSharedValue<number>(0);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container,style]}>
       <Carousel
         loop
-        width={wp('90%')}
+        width={wp('95%')}
         height={250}
         autoPlay={true}
         data={data}
@@ -70,14 +73,16 @@ const CarouselComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-   
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
+   height:hp("30%"),
+    // alignItems: "center",
+    // justifyContent: "center",
+    // flex: 1,
+    // backgroundColor: "yellow",
+
   },
   card: {
+  
     marginHorizontal:wp('2%'),
-    backgroundColor: "white",
     borderRadius: 10,
     alignItems: "center",
     shadowColor: "#000",
@@ -88,14 +93,12 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 200,
+    height: hp("30%"),
     borderRadius: 10,
+  
+
   },
-  title: {
-    marginTop: 10,
-    fontSize: 18,
-    fontWeight: "bold",
-  },
+
 });
 
 export default CarouselComponent;

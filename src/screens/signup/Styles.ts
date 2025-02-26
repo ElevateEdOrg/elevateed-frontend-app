@@ -25,7 +25,7 @@ color:Colors.secondary
   titleContainer:{
     flex:1,
     marginTop:hp('2%'),
-    alignItems:'center',
+   
     backgroundColor:'#2F2F42',
     borderTopRightRadius:15,
     borderTopLeftRadius:15,

@@ -43,6 +43,12 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: wp('1%'),
   },
+  forgotPasswordText:{
+    fontFamily:TextStyles.mediumText,
+    fontSize:14,
+    color:'#3E3E55',
+    textAlign:'right'
+  },
   loginButton: {
     marginVertical: hp('5%'),
   },

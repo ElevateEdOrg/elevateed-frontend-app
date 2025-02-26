@@ -31,53 +31,54 @@ const SignupPage = ({navigation}: SignupPageProps) => {
     { label: 'Student', value: 'student' },
     { label: 'Instructor', value: 'instructor' },
   ];
-  const handleSignUp = async () => {
-    let valid = true;
-    const full_name = `${firstname} ${lastname}`;
-   
-
-    if (valid) {
-      const dataObj = {
-        full_name: "Vraj patel",
-        email:"vrajp1234567@gmail.com",
-        password:"123456",
-        role:"student"
-      };
-
-      setLoading(true);
-
-
-      dispatch(register(dataObj))
-        .unwrap()
-        .then((response) => {
-          setLoading(false);
-          if (response.status) {
-            console.log("response message"+response.message);
-            
-            Snackbar.show({
-              text: response.message,
-              duration: Snackbar.LENGTH_LONG,
-              backgroundColor: 'green', 
-            });
-         //   navigation.navigate('LoginScreen');
-            
-          } else {
-            Snackbar.show({
-              text: response.message,
-              duration: Snackbar.LENGTH_LONG,
-              backgroundColor: 'blue', 
-            });
-          }
-        })
-        .catch((error) => {
-          setLoading(false);
-          Snackbar.show({
-            text: error.message,
-            duration: Snackbar.LENGTH_SHORT,
-            backgroundColor: 'red', 
-          });
-        });
+ 
+  const validateInputs = () => {
+    if (!firstname.trim()) {
+      Snackbar.show({ text: 'First name is required', duration: Snackbar.LENGTH_SHORT, backgroundColor: 'red' });
+      return false;
     }
+    if (!lastname.trim()) {
+      Snackbar.show({ text: 'Last name is required', duration: Snackbar.LENGTH_SHORT, backgroundColor: 'red' });
+      return false;
+    }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      Snackbar.show({ text: 'Enter a valid email', duration: Snackbar.LENGTH_SHORT, backgroundColor: 'red' });
+      return false;
+    }
+    if (password.length < 6) {
+      Snackbar.show({ text: 'Password must be at least 6 characters', duration: Snackbar.LENGTH_SHORT, backgroundColor: 'red' });
+      return false;
+    }
+    if (password !== confirmPassword) {
+      Snackbar.show({ text: 'Passwords do not match', duration: Snackbar.LENGTH_SHORT, backgroundColor: 'red' });
+      return false;
+    }
+    return true;
+  };
+
+  const handleSignUp = async () => {
+    if (!validateInputs()) return;
+
+    const full_name = `${firstname} ${lastname}`;
+    const dataObj = { full_name, email, password, role };
+
+    setLoading(true);
+    dispatch(register(dataObj))
+      .unwrap()
+      .then((response) => {
+        setLoading(false);
+        if (response.status) {
+          Snackbar.show({ text: response.message, duration: Snackbar.LENGTH_LONG, backgroundColor: 'green' });
+          navigation.navigate('LoginScreen');
+        } else {
+          Snackbar.show({ text: response.message, duration: Snackbar.LENGTH_LONG, backgroundColor: 'blue' });
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        Snackbar.show({ text: error.message, duration: Snackbar.LENGTH_SHORT, backgroundColor: 'red' });
+      });
   };
   const checkgetStart = async () => {
     // const hasSeenGetStarted = await AsyncStorage.getItem('hasSeenGetStarted');

@@ -11,13 +11,15 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+    paddingVertical: hp('1%'),
+    paddingHorizontal: wp('3%'),
   },
   header: {
-    marginTop: hp('4%'),
+    marginTop: hp('5%'),
   },
   headerText: {
     fontFamily: TextStyles.veryextraBoldText,
-    fontSize: 36,
+    fontSize: wp('8%'),
     fontWeight: '700',
     color: Colors.secondary,
   },
