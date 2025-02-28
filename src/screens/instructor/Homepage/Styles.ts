@@ -1,10 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../constants/colors';
+import {Colors} from '../../../constants/colors';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {TextStyles} from '../../constants/textstyle';
+import {TextStyles} from '../../../constants/textstyle';
 
 export const styles = StyleSheet.create({
   container: {

@@ -14,7 +14,11 @@ const SplashScreen: React.FC<Props> = ({navigation}) => {
     const checkWalkthrough = async () => {
       const hasSeenWalkthrough = await AsyncStorage.getItem("hasSeenWalkthrough");
       const isUserLogin = await AsyncStorage.getItem("userSignedIn");
-      if(isUserLogin){
+      console.log("isUserLogin",isUserLogin);
+      console.log("hasSeenWalkthrough",hasSeenWalkthrough);
+      
+      
+      if(isUserLogin=='true'){
        navigation.replace('Dashboard');
       }else{
         if (hasSeenWalkthrough) {

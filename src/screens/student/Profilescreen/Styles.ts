@@ -3,8 +3,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { TextStyles } from '../../constants/textstyle';
-import { Colors } from '../../constants/colors';
+import { Colors } from '../../../constants/colors';
+import { TextStyles } from '../../../constants/textstyle';
+
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,8 +15,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp('3%'),
   },
   header: {
+ flexDirection: 'row',
+    justifyContent: 'space-between',
  
-    marginBottom: hp('2%'),
+   marginBottom: hp('2%'),
   },
   headerText: {
     fontFamily: TextStyles.veryextraBoldText,
@@ -47,16 +50,8 @@ export const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
  
-  name: {
-    fontSize: wp('5%'),
-    fontWeight: 'bold',
-    color: Colors.secondary,
-    marginTop: hp('1%'),
-  },
-  email: {
-    fontSize: wp('4%'),
-    color: Colors.secondary,
-  },
+
+ 
   editButton: {
     marginTop: hp('1.5%'),
     paddingVertical: hp('1%'),
@@ -73,20 +68,8 @@ export const styles = StyleSheet.create({
   settingsSection: {
     marginTop: hp('2%'),
   },
-  settingItem: {
- 
-height:hp("5%"),
-    flexDirection: 'row',
-    justifyContent:'space-between',
-    alignItems: 'center',
-    marginVertical: hp('2%'),
-    paddingHorizontal:wp('3%')
-
-  },
-  settingText: {
-    fontFamily:TextStyles.veryextraBoldText,
-    fontSize: 16,
-    color: Colors.secondary,
+  textField: {
+    marginBottom: hp('2%'),
   },
   logoutContainer:{
     
@@ -95,7 +78,7 @@ height:hp("5%"),
   },
   logoutButton: {
     width:"50%",
-      marginVertical:hp('5%')
+marginTop:hp("5%")
    
   },
 

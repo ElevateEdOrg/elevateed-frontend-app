@@ -28,51 +28,56 @@ const LoginPage = ({navigation}: LoginPageProps) => {
   // Handle Login with validation
   const handleSignIn = async () => {
     // Check if fields are empty
-    if (!email.trim()) {
-      Snackbar.show({ text: 'Email is required', duration: Snackbar.LENGTH_SHORT });
-      return;
-    }
-    if (!isValidEmail(email)) {
-      Snackbar.show({ text: 'Enter a valid email', duration: Snackbar.LENGTH_SHORT });
-      return;
-    }
-    if (!password.trim()) {
-      Snackbar.show({ text: 'Password is required', duration: Snackbar.LENGTH_SHORT });
-      return;
-    }
-    if (password.length < 6) {
-      Snackbar.show({ text: 'Password must be at least 6 characters', duration: Snackbar.LENGTH_SHORT });
-      return;
-    }
+    // if (!email.trim()) {
+    //   Snackbar.show({ text: 'Email is required', duration: Snackbar.LENGTH_SHORT });
+    //   return;
+    // }
+    // if (!isValidEmail(email)) {
+    //   Snackbar.show({ text: 'Enter a valid email', duration: Snackbar.LENGTH_SHORT });
+    //   return;
+    // }
+    // if (!password.trim()) {
+    //   Snackbar.show({ text: 'Password is required', duration: Snackbar.LENGTH_SHORT });
+    //   return;
+    // }
+    // if (password.length < 6) {
+    //   Snackbar.show({ text: 'Password must be at least 6 characters', duration: Snackbar.LENGTH_SHORT });
+    //   return;
+    // }
 
  
-    const dataObj = { email, password };
+    // const dataObj = { email, password };
 
-    setLoading(true);
+    // setLoading(true);
 
-    try {
-      const response = await dispatch<any>(login(dataObj)).unwrap();
-      setLoading(false);
+    // try {
+    //   const response = await dispatch<any>(login(dataObj)).unwrap();
+    //   setLoading(false);
 
-      if (response && response.status === 'success') {
-        Snackbar.show({ text: 'Login Successful', duration: Snackbar.LENGTH_SHORT });
-        await AsyncStorage.setItem('userSignedIn', 'true');
+    //   if (response && response.status === 'success') {
+    //     Snackbar.show({ text: 'Login Successful', duration: Snackbar.LENGTH_SHORT });
+    //     await AsyncStorage.setItem('userSignedIn', 'true');
 
-        if (response.access_token) {
-          await AsyncStorage.setItem('accessToken', response.access_token);
-        }
+    //     if (response.access_token) {
+    //       await AsyncStorage.setItem('accessToken', response.access_token);
+    //     }
+    //     if(response.user){
+    //       await AsyncStorage.setItem('user', JSON.stringify(response.user));
+    //     }
         
-        navigation.replace('Dashboard');
-      } else if (response.status === 'error') {
-        Snackbar.show({ text: 'Email not verified. OTP sent to mail.', duration: Snackbar.LENGTH_SHORT });
-      } else {
-        Snackbar.show({ text: response.data.message || 'Login failed', duration: Snackbar.LENGTH_SHORT });
-      }
-    } catch (error) {
-      setLoading(false);
-      Snackbar.show({ text: 'Error logging in. Try again!', duration: Snackbar.LENGTH_SHORT });
-      console.error('Login Error:', error);
-    }
+    //     navigation.replace('Dashboard');
+    //   } else if (response.status === 'error') {
+    //     Snackbar.show({ text: 'Email not verified. OTP sent to mail.', duration: Snackbar.LENGTH_SHORT });
+    //   } else {
+    //     Snackbar.show({ text: response.message || 'Login failed', duration: Snackbar.LENGTH_SHORT });
+    //   }
+    // } catch (error) {
+    //   setLoading(false);
+    //   Snackbar.show({ text: 'Error logging in. Try again!', duration: Snackbar.LENGTH_SHORT });
+    //   console.error('Login Error:', error);
+    // }
+            navigation.replace('Dashboard');
+
   };
   return (
     <SafeAreaView style={styles.container}>

@@ -2,12 +2,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import coursesSlice from './courses';
 import authSlice from './auth';
+import profileSlice from './profile';
+import chatSlice from './chat';
 
 
 const store = configureStore({
   reducer: {
   coursesReducer: coursesSlice,
   authReducer:authSlice,
+  profileReducer:profileSlice,
+  chatReducer:chatSlice,
   },
 });
 

@@ -1,7 +1,5 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { getFocusedRouteNameFromRoute, NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,53 +16,10 @@ import {
 import SearchScreen from '../screens/student/Searchscreen/SearchScreen';
 import ProfileScreen from '../screens/student/Profilescreen/ProfilePage';
 import Contact from '../screens/student/Contactscreen/Contact';
-import { RootStackParamList } from '../navigation/AppNavigator';
-import MessageScreen from '../screens/student/Message/MessageScreen';
-
-const Stack = createNativeStackNavigator();
-
 
 const Tab = createBottomTabNavigator();
-const MessageStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-      <Stack.Screen name="MessageScreen" component={MessageScreen} options={{ headerShown: false }} />
-    </Stack.Navigator>
-  );
-};
-// const MessageStack = ({ navigation, route }) => {
-//   React.useLayoutEffect(() => {
-//     const routeName = getFocusedRouteNameFromRoute(route);
-//     if (routeName === "MessageScreen") {
-//       navigation.setOptions({ tabBarStyle: { display: "none" } });
-//     } 
-//     else {
-//       navigation.setOptions({ tabBarStyle: { display: "none" } });
-//     }
-//   }, [navigation, route]);
 
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-//       <Stack.Screen name="MessageScreen" component={MessageScreen} options={{ headerShown: false }} />
-//     </Stack.Navigator>
-//   );
-// };
-const FloatingSearchButton = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-  return (
-    <TouchableOpacity
-      style={styles.fab}
-      activeOpacity={0.7}
-      onPress={() => navigation.navigate('Search')}>
-      <View style={styles.fabInner}>
-        <Icon name="search-outline" size={28} color="#FFFFFF" />
-      </View>
-    </TouchableOpacity>
-  );
-};
 
 const BottomNavigation: React.FC = () => {
   return (
@@ -98,62 +53,11 @@ const BottomNavigation: React.FC = () => {
             ),
           }}
         />
-        <Tab.Screen
-          name="Course"
-          component={CourseScreen}
-          options={{
-            tabBarLabel: ({focused}) => (
-              <Text
-                style={[
-                  styles.tabBarLabel,
-                  focused && styles.tabBarLabelFocused,
-                ]}>
-                Course
-              </Text>
-            ),
-            tabBarIcon: ({focused}) => (
-              <Icon
-                name={focused ? 'book' : 'book-outline'}
-                size={24}
-                color={focused ? '#3D5CFF' : '#B8B8D2'}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Search"
-          component={SearchScreen}
-          options={{
-            tabBarButton: () => <FloatingSearchButton />,
-            tabBarIcon: ({focused}) => (
-              <Icon
-                name="search"
-                size={24}
-                color={focused ? '#FF1493' : '#B8B8D2'}
-              />
-            ),
-          }}
-        />
+       
         <Tab.Screen
           name="Message"
-          component={MessageStack}
-          options={({ route }) => ({
-
-            tabBarStyle: ((route) => {
-              const routeName = getFocusedRouteNameFromRoute(route) ?? ""
-              console.log(routeName)
-              if (routeName === 'MessageScreen') {
-                return { display: "none" }
-              }else{
-                return {backgroundColor: Colors.background,
-                  position: 'absolute',
-                  height: hp('10%'),
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  borderTopRightRadius: 20,
-                  borderTopLeftRadius: 20}
-              }
-            })(route),
+          component={Contact}
+          options={{
             tabBarLabel: ({focused}) => (
               <Text
                 style={[
@@ -170,7 +74,7 @@ const BottomNavigation: React.FC = () => {
                 color={focused ? '#3D5CFF' : '#B8B8D2'}
               />
             ),
-          })}
+          }}
         />
         <Tab.Screen
           name="Profile"

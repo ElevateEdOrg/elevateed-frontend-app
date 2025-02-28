@@ -18,6 +18,7 @@ interface TextfieldComponentProps extends TextInputProps {
   secureTextEntry?: boolean;
   style?: object;
   keyboardType?: TextInputProps["keyboardType"];
+  editable?: boolean;
 }
 
 const TextfieldComponent: React.FC<TextfieldComponentProps> = ({ 
@@ -27,7 +28,8 @@ const TextfieldComponent: React.FC<TextfieldComponentProps> = ({
   onChangeText, 
   secureTextEntry = false, 
   keyboardType = "default",
-  style 
+  editable = true ,
+  style
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(!secureTextEntry);  
 
@@ -43,6 +45,8 @@ const TextfieldComponent: React.FC<TextfieldComponentProps> = ({
           secureTextEntry={secureTextEntry && !isPasswordVisible} 
           keyboardType={keyboardType}
           placeholderTextColor={'#858597'}
+          editable={editable}
+
         />
         {secureTextEntry && (
           <TouchableOpacity 

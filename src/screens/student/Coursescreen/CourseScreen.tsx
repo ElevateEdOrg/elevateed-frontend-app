@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, SafeAreaView } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getCourses } from '../../state/courses';
-import { useAppDispatch } from '../../state/hooks';
+import { getCourses } from '../../../state/courses';
+import { useAppDispatch } from '../../../state/hooks';
 import Config from 'react-native-config';
-import { image } from '../../constants/images';
+import { image } from '../../../constants/images';
 import { styles } from './Styles';
-import LabelComponent from '../../components/LableComponent';
+import LabelComponent from '../../../components/LableComponent';
 
 const CourseScreen = () => {
   const [courses, setCourses] = useState([]);

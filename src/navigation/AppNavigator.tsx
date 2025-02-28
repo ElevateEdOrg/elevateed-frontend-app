@@ -6,10 +6,14 @@ import OnBoardingScreen from "../screens/onboarding/OnBoardingScreen";
 import LoginPage from "../screens/login/LoginScreen";
 import SignupPage from "../screens/signup/SignupScreen";
 import ForgotPasswordPage from "../screens/forgotpassword/ForgotPasswordScreen";
-import Dashboard from "../screens/dashboard/DashboardScreen";
+import SearchScreen from "../screens/student/Searchscreen/SearchScreen";
 import VerifyOTPPage from "../screens/otpscreen/OtpScreen";
-import MessageScreen from "../screens/message/MessageScreen";
-import ProfileScreen from "../screens/profilescreen/ProfilePage";
+// import MessageScreen from "../screens/student/message/MessageScreen";
+
+import Dashboard from "../screens/student/Dashboard/DashboardScreen";
+import InstructorDashboard from "../screens/instructor/Dashboard/Dashboard";
+
+
 
 
 export type RootStackParamList = {
@@ -20,8 +24,9 @@ export type RootStackParamList = {
   ForgotPasswordPage: undefined;
   Dashboard: undefined;
   VerifyOTPScreen: { email: string };
-  MessageScreen: undefined;
   ProfileScreen: undefined;
+  SearchScreen: undefined;
+  InstructorDashboardScreen: undefined;
 
   
 };
@@ -38,7 +43,9 @@ const AppNavigator = () => {
         <Stack.Screen name="ForgotPasswordPage" component={ForgotPasswordPage} options={{ headerShown: false }} />
         <Stack.Screen name="VerifyOTPScreen" component={VerifyOTPPage} options={{ headerShown: false }} />
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
-        <Stack.Screen name="MessageScreen" component={MessageScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="SearchScreen" component={SearchScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="InstructorDashboardScreen" component={InstructorDashboard} options={{ headerShown: false }} />
+
         
       </Stack.Navigator>
     </NavigationContainer>

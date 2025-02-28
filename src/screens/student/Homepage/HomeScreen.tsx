@@ -14,15 +14,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import LabelComponent from '../../components/LableComponent';
+import LabelComponent from '../../../components/LableComponent';
 import { styles } from './Styles';
-import { image } from '../../constants/images';
-import CarouselComponent from '../../components/CarouselComponent';
-import CourseCardComponent from '../../components/CourseCardComponent';
-import { categories, courseData, instructorData, recentCourses } from '../../constants/coursecarddata';
-import courses from '../../state/courses';
-import RecentCourseCard from '../../components/RecentCourseCarsComponent';
-import TopInstructorCard from '../../components/TopInstructorComponent';
+import { image } from '../../../constants/images';
+import CarouselComponent from '../../../components/CarouselComponent';
+import CourseCardComponent from '../../../components/CourseCardComponent';
+import { categories, courseData, instructorData, recentCourses } from '../../../constants/coursecarddata';
+import courses from '../../../state/courses';
+import RecentCourseCard from '../../../components/RecentCourseCarsComponent';
+import TopInstructorCard from '../../../components/TopInstructorComponent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { width } = Dimensions.get('window');
 
@@ -34,14 +35,31 @@ const HomePage = () => {
     selectedCategory === "All"
       ? courseData
       : courseData.filter((course) => course.category === selectedCategory);
- 
+      const [fullName, setFullName] = useState<string | null>('');
+
+      
+      useEffect(() => {
+        const fetchUserName = async () => {
+          try {
+            const storedUser = await AsyncStorage.getItem('user');
+            if (storedUser) {
+              const parsedUser = JSON.parse(storedUser);
+              setFullName(parsedUser.full_name || 'User');  // Fallback to 'User' if name is missing
+            }
+          } catch (error) {
+            console.error('Error fetching user name:', error);
+          }
+        };
+    
+        fetchUserName();
+      }, []);
 
   return (
     <SafeAreaView style={styles.container}>
        <StatusBar backgroundColor={'transparent'} barStyle={'light-content'} translucent={true}  />
       <View style={styles.topHalf}>
         <View style={styles.header}>
-          <LabelComponent value="Hi, Jay" style={styles.header1} />
+        <LabelComponent value={`Hi, ${fullName}`} style={styles.header1} />
           <LabelComponent value="Let's start learning" style={styles.header2} />
         </View>
         <Image source={image.PROFILEPERSON} style={styles.profilePerson}/>

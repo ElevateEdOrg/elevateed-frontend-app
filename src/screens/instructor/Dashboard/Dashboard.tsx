@@ -12,14 +12,15 @@ import {
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 
-import BottomNavigation from '../../components/BottomMenuComponent';
 import { styles } from './Styles';
+import BottomNavigation from '../../../components/InstructorBottomMenuComponent';
+
 
 // interface DashboardProps {
 //   navigation: NativeStackNavigationProp<any>;
 // }
 
-const Dashboard = () => {
+const InstructorDashboard = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'transparent'} barStyle={'light-content'} />
@@ -29,4 +30,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default InstructorDashboard;

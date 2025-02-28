@@ -4,8 +4,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { TextStyles } from '../../constants/textstyle';
-import { Colors } from '../../constants/colors';
+import { TextStyles } from '../../../constants/textstyle';
+import { Colors } from '../../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
