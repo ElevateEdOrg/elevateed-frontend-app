@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
         padding: 12,
       },
       courseContainer:{
-       paddingBottom: hp("18%"),
+       paddingBottom: hp("7%"),
       },
             loadingText: {
         color: '#fff',

@@ -14,7 +14,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import SearchScreen from '../screens/student/Searchscreen/SearchScreen';
-import ProfileScreen from '../screens/student/Profilescreen/ProfilePage';
+import ProfileScreen from '../screens/student/Profilescreen/ProfileScreen';
 import Contact from '../screens/student/Contactscreen/Contact';
 
 const Tab = createBottomTabNavigator();

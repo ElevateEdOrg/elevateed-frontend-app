@@ -10,7 +10,7 @@
     "test": "jest",
     "android_clean": "cd android && ./gradlew clean && cd ..",
     "android_development": "cross-env ENVFILE=.env.development react-native run-android",
-    "build_android_development": "ENVFILE=.env.development && cd android && ./gradlew app:assembleRelease && cd .."
+    "build_android_development": "cross-env ENVFILE=.env.development && cd android && ./gradlew app:assembleRelease && cd .."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.1",
@@ -23,15 +23,19 @@
     "@types/react-native-vector-icons": "^6.4.18",
     "axios": "^1.7.9",
     "cross-env": "^7.0.3",
+    "crypto-js": "^4.2.0",
     "react": "18.3.1",
     "react-native": "0.76.7",
+    "react-native-blob-util": "^0.21.2",
     "react-native-config": "^1.5.5",
+    "react-native-document-picker": "^9.3.1",
     "react-native-element-dropdown": "^2.12.4",
     "react-native-gesture-handler": "^2.23.1",
     "react-native-gifted-chat": "^2.7.3",
     "react-native-image-picker": "^8.1.0",
     "react-native-keyboard-controller": "^1.16.4",
     "react-native-otp-textinput": "^1.1.6",
+    "react-native-pdf": "^6.7.7",
     "react-native-ratings": "^8.1.0",
     "react-native-reanimated": "^3.11.7",
     "react-native-reanimated-carousel": "^4.0.2",
@@ -41,8 +45,10 @@
     "react-native-snackbar": "^2.8.0",
     "react-native-toast-message": "^2.2.1",
     "react-native-vector-icons": "^10.2.0",
+    "react-native-video": "^6.10.2",
     "react-redux": "^9.2.0",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

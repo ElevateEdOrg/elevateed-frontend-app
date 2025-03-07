@@ -92,4 +92,22 @@ export const styles = StyleSheet.create({
     marginBottom:hp("3%"),
    
   },
+  myCoursesContainer:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#2E2E45',
+    borderRadius: 12,
+    padding: hp("2%"),
+    marginVertical: hp("2%"),
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  mycourseText:{
+    fontFamily: TextStyles.boldText,
+    fontWeight: 800,
+    fontSize: 18,
+    color: Colors.secondary,
+  },
 });

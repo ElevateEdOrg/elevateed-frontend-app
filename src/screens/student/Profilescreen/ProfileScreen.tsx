@@ -72,21 +72,23 @@ const ProfileScreen = ({navigation}: ProfilePageProps) => {
     fetchUserData();
   }, []);
 
-  const handleLogout = async (): Promise<void> => {
+  const handleLogout = async () => {
+  
     try {
-      await AsyncStorage.removeItem('user');
-      await AsyncStorage.removeItem('accessToken');
+      // Remove multiple keys at once
+      await AsyncStorage.multiRemove(['user', 'accessToken', 'userRole']);
       await AsyncStorage.setItem('userSignedIn', 'false');
-
+  
       console.log('User logged out successfully');
-
-      // Navigate to Login Screen
-      navigation.replace('LoginScreen');
+  
+      // Navigate to login screen
+      navigation.navigate('LoginScreen');
     } catch (error) {
-      console.error('Error logging out:', error);
-      Alert.alert('Error', 'Failed to log out. Please try again.');
+      console.error('Logout Error:', error);
+      Alert.alert('Logout Failed', 'Something went wrong. Please try again.');
     }
   };
+  
   const requestStoragePermission = async () => {
     if (Platform.OS === 'android') {
       try {

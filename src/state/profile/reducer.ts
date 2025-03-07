@@ -21,6 +21,7 @@ export const updateProfile = createAsyncThunk(
     async ({ formData}: { formData: FormData}, { rejectWithValue }) => {
       try {
         const accessToken = await AsyncStorage.getItem('accessToken');
+        console.log('Access Token:', accessToken);
         
         if (!accessToken) {
           throw new Error('Access Token Not Found');

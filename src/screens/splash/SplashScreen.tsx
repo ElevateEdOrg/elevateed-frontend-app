@@ -19,11 +19,13 @@ const SplashScreen: React.FC<Props> = ({navigation}) => {
       
       
       if(isUserLogin=='true'){
-       navigation.replace('Dashboard');
+        
+    navigation.replace('Dashboard');
       }else{
         if (hasSeenWalkthrough) {
-
+// navigation.replace('Contact');
           navigation.replace("LoginScreen");
+          // navigation.replace('MessageScreen', { receiverId:"04b8bbab-e20f-4b6e-9020-e8c51dad9a43", userId:"37a8f2de-3df3-4d13-a32c-0ea0c64de833",name:"vraj patel"});
         } else {
           navigation.replace("OnBoardingScreen");
         }

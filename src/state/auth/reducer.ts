@@ -6,6 +6,7 @@ import { axiosInstance } from '../../utils/axiosInstanceCourse';
 
 
 interface User {
+  id:string;
     full_name: string;
     email: string;
      password:string
@@ -58,7 +59,7 @@ export const register = createAsyncThunk(
     Endpoints.REGISTER,
     async (params:User) => {
       try {
-        const response = await axiosInstance.post('register', params);
+        const response = await axiosInstance.post('auth/register', params);
         console.log("jygjchgbjhgbv"+response)
         return response.data;
       } catch (err: any) {
@@ -70,7 +71,7 @@ export const register = createAsyncThunk(
 
   export const login = createAsyncThunk(Endpoints.LOGIN, async(params: { email: string; password: string }) => {
   try {
-    const response = await axiosInstance.post('login', params);
+    const response = await axiosInstance.post('api/auth/login', params);
     console.log("resoponse dataaaa   "+ response.data);
     
     return response.data;
@@ -80,7 +81,7 @@ export const register = createAsyncThunk(
 });
   export const forgotPassword = createAsyncThunk(Endpoints.FORGOT_PASSWORD, async(params: { email: string}) => {
   try {
-    const response = await axiosInstance.post('forgot-password', params);
+    const response = await axiosInstance.post('auth/forgot-password', params);
     console.log("resoponse dataaaa   "+ response.data);
     
     return response.data;
@@ -93,7 +94,7 @@ export const register = createAsyncThunk(
   export const resetPassword = createAsyncThunk(Endpoints.RESET_PASSWORD, async(params: { email: string, otp:string,new_password:string}) => {
 
   try {
-    const response = await axiosInstance.post('reset-password', params);
+    const response = await axiosInstance.post('auth/reset-password', params);
     console.log("resoponse dataaaa   "+ response.data);
     
     return response.data;

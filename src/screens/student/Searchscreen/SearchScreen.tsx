@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { AppDispatch, RootState } from '../../../state/store';
 import { getCourses, searchCourse } from '../../../state/courses/reducer';
 import CourseCardComponent from '../../../components/CourseCardComponent';
@@ -13,27 +13,38 @@ import {
 import { Colors } from '../../../constants/colors';
 import { styles } from './Styles';
 import { useAppDispatch, useAppSelector } from '../../../state/hooks';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 
 const SearchScreen = () => {
+   const navigation = useNavigation();
   const [query, setQuery] = useState('');
   const [courses, setCourses] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const { searchResults, searchLoading } = useAppSelector((state: RootState) => state.coursesReducer);
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setCourses([]);
+        setQuery('');
+      };
+    }, [])
+  );
   useEffect(() => {
     getCoursesAPICall();
   }, []);
 
   useEffect(() => {
     if (query.trim() !== '') {
-      dispatch(searchCourse(query));
+     dispatch(searchCourse(query));
     }
   }, [query, dispatch]);
 
   useEffect(() => {
     if (query === '') {
-      getCoursesAPICall();
+     getCoursesAPICall();
     } else if (searchResults) {
       setCourses(Array.isArray(searchResults) ? searchResults : []);
     }
@@ -61,12 +72,14 @@ const SearchScreen = () => {
 
   const renderCourse = ({ item }: any) => (
     <CourseCardComponent
-      image={item.banner_image ? { uri: item.banner_image } : image.NOIMAGE}
+      key={item.id}
+      images={item.banner_image}
       instructor={item.Instructor.full_name}
       title={item.title}
       description={item.description}
       price={item.price}
-      onBuy={() =>{}}
+      onBuy={() => console.log(`Buying ${item.title}`)}
+      onPress={()=>navigation.navigate('CourseDetailScreen',{courseId:item.id})}
     />
   );
   const clearSearch = () => {
@@ -91,15 +104,15 @@ const SearchScreen = () => {
       </View>
       <View style={styles.courseContainer}>
       {loading || searchLoading ? (
-        <Text style={styles.loadingText}>Loading...</Text>
+        <ActivityIndicator size="large" color="#fff" />
       ) : (
         <FlatList
-          data={courses}
-          keyExtractor={(item) => item.id}
-          renderItem={renderCourse}
-      
-          ListEmptyComponent={<Text style={styles.noResults}>No Courses Found</Text>}
-        />
+        data={courses}
+        keyExtractor={(item, index) => (item.id ? item.id.toString() : `fallback-key-${index}`)}
+        renderItem={renderCourse}
+        removeClippedSubviews={false}
+        ListEmptyComponent={<Text style={styles.noResults}>No Courses Found</Text>}
+      />
       )}
       </View>
     

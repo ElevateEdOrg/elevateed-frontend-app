@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, Dimensions, StyleSheet } from "react-native";
+import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import Animated from "react-native-reanimated";
 import { image } from "../constants/images";
@@ -8,45 +8,27 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useNavigation } from "@react-navigation/native";
 
 const { width } = Dimensions.get("window");
 interface CarousalComponentProps {
 
   style?:object
+  data: { id: string; image: { uri: string }; title: string }[];
 }
-const data = [
-  {
-    id: "1",
-    title: "Card 1",
-    image: image.CAROUSEL1
-  },
-  {
-    id: "2",
-    title: "Card 2",
-    image: image.CAROUSEL1
-  },
-  {
-    id: "3",
-    title: "Card 3",
-    image: image.CAROUSEL1
-  },
-  {
-    id: "4",
-    title: "Card 4",
-    image: image.CAROUSEL1
-  },
-  {
-    id: "5",
-    title: "Card 5",
-    image: image.CAROUSEL1
-  },
-];
 
-const CarouselComponent : React.FC<CarousalComponentProps> = ({ style }) =>  {
+
+const CarouselComponent : React.FC<CarousalComponentProps> = ({ style,data}) =>  {
+  const navigation = useNavigation();
   const progress = useSharedValue<number>(0);
+
+  const handlePress = (id: string) => {
+    navigation.navigate("CourseDetailScreen", { courseId: id });
+  };
 
   return (
     <View style={[styles.container,style]}>
+      
       <Carousel
         loop
         width={wp('95%')}
@@ -61,10 +43,17 @@ const CarouselComponent : React.FC<CarousalComponentProps> = ({ style }) =>  {
         }}
         onProgressChange={progress}
         renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Image source={item.image} style={styles.image} />
-           
-          </View>
+          <TouchableOpacity onPress={() => handlePress(item.id)}>
+            <View style={styles.card}>
+              <Image
+                source={item.image && item.image.uri ? { uri: item.image.uri } : require('../assets/image/placeholder_noimage.png')}
+                style={styles.image}
+              />
+              <View style={styles.overlay}>
+                <Text style={styles.title}>{item.title}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         )}
       />
     </View>
@@ -73,16 +62,10 @@ const CarouselComponent : React.FC<CarousalComponentProps> = ({ style }) =>  {
 
 const styles = StyleSheet.create({
   container: {
-   height:hp("30%"),
-    // alignItems: "center",
-    // justifyContent: "center",
-    // flex: 1,
-    // backgroundColor: "yellow",
-
+    height: hp("30%"),
   },
   card: {
-  
-    marginHorizontal:wp('2%'),
+    marginHorizontal: wp("2%"),
     borderRadius: 10,
     alignItems: "center",
     shadowColor: "#000",
@@ -90,15 +73,28 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
+    overflow: "hidden", // Ensures overlay stays inside the image
   },
   image: {
     width: "100%",
     height: hp("30%"),
     borderRadius: 10,
-  
-
   },
-
+  overlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent black background
+    padding: 10,
+    borderRadius: 5,
+  },
+  title: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });
 
 export default CarouselComponent;

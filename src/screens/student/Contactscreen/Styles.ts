@@ -25,6 +25,9 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         color: Colors.secondary,
       },
+      cardContainer:{
+        paddingBottom: hp("20%"),
+      },
   card: {
     padding: 15,
     margin: 10,

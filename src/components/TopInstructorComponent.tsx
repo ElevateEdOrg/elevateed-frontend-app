@@ -5,36 +5,31 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from 'react-native-responsive-screen';
+import { image } from '../constants/images';
 
 interface TopInstructorCardProps {
-  image: ImageSourcePropType;
+  images: string;
   name: string;
-  totalCourses: number;
-  rating: number;
+  totalCourses: string;
+  totalEnrollments:string;
 }
 
-const TopInstructorCard: React.FC<TopInstructorCardProps> = ({ image, name, totalCourses, rating }) => {
+const TopInstructorCard: React.FC<TopInstructorCardProps> = ({ images, name, totalCourses,totalEnrollments }) => {
   return (
     <View style={styles.card}>
      
-      <Image source={image} style={styles.instructorImage} />
+     <Image 
+       source={images ? { uri: images } :image.PROFILEPERSON} 
+       style={styles.instructorImage}
+     />
 
 
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.courses}>Total Courses: {totalCourses}</Text>
+        <Text style={styles.courses}>Total Enrollments: {totalEnrollments}</Text>
 
-        <View style={styles.ratingContainer}>
-          <AirbnbRating
-            count={5}
-            defaultRating={rating ?? 0}
-            size={14}
-            showRating={false} 
-            isDisabled={true}
-            selectedColor="gold"
-          />
-          <Text style={styles.ratingText}>{rating.toFixed(1)}</Text>
-        </View>
+      
       </View>
     </View>
   );

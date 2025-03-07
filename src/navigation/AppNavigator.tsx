@@ -11,7 +11,15 @@ import VerifyOTPPage from "../screens/otpscreen/OtpScreen";
 // import MessageScreen from "../screens/student/message/MessageScreen";
 
 import Dashboard from "../screens/student/Dashboard/DashboardScreen";
-import InstructorDashboard from "../screens/instructor/Dashboard/Dashboard";
+import UserCourseScreen from "../screens/student/UserCourse/UserCourseScreen";
+import CourseContentScreen from "../screens/student/CourseContent/CourseContentScreen";
+import CreateCourseScreen from "../screens/instructor/CreateCourseScreen";
+import PickPDFScreen from "../screens/instructor/CreateContentScreen";
+import CreateCourseContentScreen from "../screens/instructor/CreateContentScreen";
+import QuizScreen from "../screens/student/Quiz/QuizScreen";
+import CourseDetailScreen from "../screens/student/CourseDetail/CourseDetailScreen";
+import MessageScreen from "../screens/student/Message/MessageScreen";
+import Contact from "../screens/student/Contactscreen/Contact";
 
 
 
@@ -27,6 +35,14 @@ export type RootStackParamList = {
   ProfileScreen: undefined;
   SearchScreen: undefined;
   InstructorDashboardScreen: undefined;
+  UserCourseScreen: undefined;
+  CourseContentScreen: undefined;
+  CreateCourseScreen: undefined;
+  CreateCourseContentScreen: undefined;
+  QuizScreen: undefined;
+  CourseDetailScreen: undefined;
+  MessageScreen: undefined;
+  Contact: undefined;
 
   
 };
@@ -44,10 +60,15 @@ const AppNavigator = () => {
         <Stack.Screen name="VerifyOTPScreen" component={VerifyOTPPage} options={{ headerShown: false }} />
         <Stack.Screen name="Dashboard" component={Dashboard} options={{ headerShown: false }} />
         <Stack.Screen name="SearchScreen" component={SearchScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="InstructorDashboardScreen" component={InstructorDashboard} options={{ headerShown: false }} />
-
-        
-      </Stack.Navigator>
+        <Stack.Screen name="UserCourseScreen" component={UserCourseScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CourseContentScreen" component={CourseContentScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CreateCourseScreen" component={CreateCourseScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CreateCourseContentScreen" component={CreateCourseContentScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="QuizScreen" component={QuizScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CourseDetailScreen" component={CourseDetailScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="MessageScreen" component={MessageScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
+        </Stack.Navigator>
     </NavigationContainer>
   );
 };
