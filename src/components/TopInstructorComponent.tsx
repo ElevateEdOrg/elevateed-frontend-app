@@ -5,36 +5,32 @@ import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from 'react-native-responsive-screen';
+import { image } from '../constants/images';
+import { Colors } from '../constants/colors';
 
 interface TopInstructorCardProps {
-  image: ImageSourcePropType;
+  images: string;
   name: string;
-  totalCourses: number;
-  rating: number;
+  totalCourses: string;
+  totalEnrollments:string;
 }
 
-const TopInstructorCard: React.FC<TopInstructorCardProps> = ({ image, name, totalCourses, rating }) => {
+const TopInstructorCard: React.FC<TopInstructorCardProps> = ({ images, name, totalCourses,totalEnrollments }) => {
   return (
     <View style={styles.card}>
      
-      <Image source={image} style={styles.instructorImage} />
+     <Image 
+       source={images ? { uri: images } :image.PROFILEPERSON} 
+       style={styles.instructorImage}
+     />
 
 
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.courses}>Total Courses: {totalCourses}</Text>
+        <Text style={styles.courses}>Total Enrollments: {totalEnrollments}</Text>
 
-        <View style={styles.ratingContainer}>
-          <AirbnbRating
-            count={5}
-            defaultRating={rating ?? 0}
-            size={14}
-            showRating={false} 
-            isDisabled={true}
-            selectedColor="gold"
-          />
-          <Text style={styles.ratingText}>{rating.toFixed(1)}</Text>
-        </View>
+      
       </View>
     </View>
   );
@@ -42,7 +38,7 @@ const TopInstructorCard: React.FC<TopInstructorCardProps> = ({ image, name, tota
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#2E2E45',
+    backgroundColor: Colors.card_background,
     borderRadius: 12,
     padding: hp("2%"),
     marginVertical: hp("1%"),
@@ -62,7 +58,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
   },
   courses: {
@@ -76,7 +72,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: 14,
-    color: '#fff',
+    color: Colors.secondary,
     marginLeft: 6,
   },
 });

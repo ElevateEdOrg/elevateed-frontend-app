@@ -1,32 +1,48 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ImageSourcePropType } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
-  } from 'react-native-responsive-screen';
+} from 'react-native-responsive-screen';
 import { TextStyles } from '../constants/textstyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { image } from '../constants/images';
+import { Colors } from '../constants/colors';
+
 interface CourseCardComponentProps {
-  image: ImageSourcePropType;
+  images: string;
   instructor: string;
   title: string;
   description: string;
   price: string;
   onBuy: () => void;
+  onPress: () => void;
 }
 
-const CourseCardComponent: React.FC<CourseCardComponentProps> = ({ image, instructor, title, description, price, onBuy }) => {
+const CourseCardComponent: React.FC<CourseCardComponentProps> = ({ 
+  images, 
+  instructor, 
+  title, 
+  description, 
+  price, 
+  onBuy, 
+  onPress 
+}) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
+      <Image 
+        source={images ? { uri: images } : image.NOIMAGE} 
+        style={styles.courseImage}
+      />
 
-      <Image source={image} style={styles.courseImage} />
-
-  
       <View style={styles.cardContent}>
-      <View style={styles.instructorContainer}>
-      <FontAwesome name="user" size={14} color="#888" style={styles.icon} />
+        {/* Instructor */}
+        <View style={styles.instructorContainer}>
+          <FontAwesome name="user" size={14} color="#aaa" style={styles.icon} />
           <Text style={styles.instructorName}>{instructor}</Text>
         </View>
+
+        {/* Title & Description */}
         <Text style={styles.courseTitle}>{title}</Text>
         <Text style={styles.description} numberOfLines={2}>
           {description}
@@ -34,63 +50,63 @@ const CourseCardComponent: React.FC<CourseCardComponentProps> = ({ image, instru
 
         {/* Bottom Section */}
         <View style={styles.bottomSection}>
-          <Text style={styles.price}>${price}</Text>
+          <Text style={styles.price}>₹{price}</Text>
           <TouchableOpacity style={styles.buyButton} onPress={onBuy}>
             <Text style={styles.buyText}>Buy Now</Text>
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   card: {
-  
-    backgroundColor: '#2E2E45',
+    backgroundColor: '#2C2C3E',
     borderRadius: 12,
-    padding: hp("1%"),
-    marginVertical: hp("1%"),
+    overflow: 'hidden',
+    marginVertical: hp('1.5%'),
+    marginHorizontal: wp('4%'),
     shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 8,
+    elevation: 6,
   },
   courseImage: {
-    width: '100%',
-    height: hp('16%'),
-    borderRadius: 10,
-    marginRight: 12,
-    resizeMode:'stretch'
+   
+    height: hp('18%'),
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    resizeMode: 'cover',
   },
   cardContent: {
-    marginTop:hp('1%'),
-    flex: 1,
-    marginLeft:wp("3%")
-  },
-  instructorName: {
-    fontSize: 12,
-    color: '#888',
-    fontWeight: '500',
+    padding: hp('2%'),
   },
   instructorContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 4,
+    marginBottom: 6,
   },
   icon: {
-    marginRight: 5,
+    marginRight: 6,
+  },
+  instructorName: {
+    fontSize: 13,
+    color: '#aaa',
+    fontWeight: '500',
   },
   courseTitle: {
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: TextStyles.veryextraBoldText,
-  
-    color: '#fff',
+    color: Colors.secondary,
+    marginBottom: 4,
   },
   description: {
-    fontSize: 12,
-    color: '#888',
-    marginVertical: 4,
+    fontSize: 13,
+    color: '#bbb',
+    marginBottom: 10,
+    lineHeight: 18,
   },
   bottomSection: {
     flexDirection: 'row',
@@ -100,17 +116,19 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#3D5CFF',
+    color: Colors.primary,
   },
   buyButton: {
-    backgroundColor: '#3D5CFF',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
+    backgroundColor: Colors.primary,
+    paddingVertical: 8,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    marginLeft:10
   },
   buyText: {
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
+    fontSize: 14,
   },
 });
 

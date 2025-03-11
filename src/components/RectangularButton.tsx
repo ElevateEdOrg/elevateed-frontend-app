@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     height: hp('6.30%'),
     width: wp('90%'),
     borderRadius: 16,
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
     paddingHorizontal: 20,
     alignItems: 'center',
     justifyContent: 'center',

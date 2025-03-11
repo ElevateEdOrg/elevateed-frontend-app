@@ -63,7 +63,7 @@ const ForgotPasswordPage = ({navigation}: ForgotPasswordProps) => {
       <View style={styles.titleContainer}>
         <TextfieldComponent label='Your Email' placeholder={'Enter Your Email...'} value={email} onChangeText={setEmailText} style={styles.textField} keyboardType='email-address'/>
         <View style={styles.infoContainer}>
-        <LabelComponent value="*" style={[styles.info, {color:'#3D5CFF'}]}/>
+        <LabelComponent value="*" style={[styles.info, {color:Colors.primary}]}/>
         <LabelComponent value="Check your email" style={styles.info}/>
         </View>
        

@@ -8,6 +8,7 @@ import Config from 'react-native-config';
 import { image } from '../../../constants/images';
 import { styles } from './Styles';
 import LabelComponent from '../../../components/LableComponent';
+import { Colors } from '../../../constants/colors';
 
 const CourseScreen = () => {
   const [courses, setCourses] = useState([]);
@@ -74,7 +75,7 @@ const getCoursesAPICall = async () => {
         <LabelComponent value='Courses' style={styles.headerText}/>
       </View>
       {loading ? (
-        <ActivityIndicator size="large" color="#3D5CFF" />
+        <ActivityIndicator size="large" color={Colors.primary} />
       ) : (
         <FlatList 
           data={courses} 

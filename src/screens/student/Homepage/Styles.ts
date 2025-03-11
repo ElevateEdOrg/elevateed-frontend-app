@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   topHalf: {
     flexDirection: 'row',
     height: hp('18%'),
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
     justifyContent: 'space-between',
   },
   header: {
@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
 
   },
   categoryButton: {
-    backgroundColor: "#2E2E45",
+    backgroundColor: Colors.card_background,
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderRadius: 20,
@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   selectedCategoryText: {
-    color: "#FFF",
+    color: Colors.secondary,
   },
   browseCourseCard:{
     marginBottom:hp("6%")
@@ -91,5 +91,23 @@ export const styles = StyleSheet.create({
   rcContainer:{
     marginBottom:hp("3%"),
    
+  },
+  myCoursesContainer:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: Colors.card_background,
+    borderRadius: 12,
+    padding: hp("2%"),
+    marginVertical: hp("2%"),
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  mycourseText:{
+    fontFamily: TextStyles.boldText,
+    fontWeight: 800,
+    fontSize: 18,
+    color: Colors.secondary,
   },
 });

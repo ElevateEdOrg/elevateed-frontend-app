@@ -30,6 +30,7 @@ import {updateProfile} from '../../../state/profile/reducer';
 import Snackbar from 'react-native-snackbar';
 import Toast from 'react-native-toast-message';
 import { useAppDispatch } from '../../../state/hooks';
+import { Colors } from '../../../constants/colors';
 
 
 interface ProfilePageProps {
@@ -72,21 +73,23 @@ const ProfileScreen = ({navigation}: ProfilePageProps) => {
     fetchUserData();
   }, []);
 
-  const handleLogout = async (): Promise<void> => {
+  const handleLogout = async () => {
+  
     try {
-      await AsyncStorage.removeItem('user');
-      await AsyncStorage.removeItem('accessToken');
+      // Remove multiple keys at once
+      await AsyncStorage.multiRemove(['user', 'accessToken', 'userRole']);
       await AsyncStorage.setItem('userSignedIn', 'false');
-
+  
       console.log('User logged out successfully');
-
-      // Navigate to Login Screen
-      navigation.replace('LoginScreen');
+  
+      // Navigate to login screen
+      navigation.navigate('LoginScreen');
     } catch (error) {
-      console.error('Error logging out:', error);
-      Alert.alert('Error', 'Failed to log out. Please try again.');
+      console.error('Logout Error:', error);
+      Alert.alert('Logout Failed', 'Something went wrong. Please try again.');
     }
   };
+  
   const requestStoragePermission = async () => {
     if (Platform.OS === 'android') {
       try {
@@ -195,7 +198,7 @@ const ProfileScreen = ({navigation}: ProfilePageProps) => {
       <View style={styles.header}>
         <LabelComponent value="Account" style={styles.headerText} />
         <TouchableOpacity onPress={handleLogout}>
-          <Icon name="log-out-outline" size={26} color="#fff" />
+          <Icon name="log-out-outline" size={26} color={Colors.secondary} />
         </TouchableOpacity>
       </View>
 
@@ -203,7 +206,7 @@ const ProfileScreen = ({navigation}: ProfilePageProps) => {
       <View style={styles.profileSection}>
         <Image source={profileImage} style={styles.profileImage} />
         <TouchableOpacity style={styles.editIcon} onPress={handleImagePicker}>
-          <FontAwesome name="camera" size={10} color="#fff" />
+          <FontAwesome name="camera" size={10} color={Colors.secondary} />
         </TouchableOpacity>
       </View>
 

@@ -4,6 +4,9 @@ import coursesSlice from './courses';
 import authSlice from './auth';
 import profileSlice from './profile';
 import chatSlice from './chat';
+import cartSlice from './cart';
+import paymentSlice from './payment';
+import quizSlice from './quiz';
 
 
 const store = configureStore({
@@ -12,6 +15,10 @@ const store = configureStore({
   authReducer:authSlice,
   profileReducer:profileSlice,
   chatReducer:chatSlice,
+  cartReducer: cartSlice, 
+  paymentReducer: paymentSlice, 
+  quizReducer: quizSlice,
+
   },
 });
 

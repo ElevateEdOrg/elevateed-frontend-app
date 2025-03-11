@@ -149,7 +149,7 @@ const VerifyOTPPage = ({navigation, route}: VerifyOTPProps) => {
             <TouchableOpacity onPress={resendOTP} style={{ width: '100%', alignItems: 'flex-end' }}>
           <LabelComponent 
             value={timer > 0 ? `Resend in ${timer}s` : 'Resend OTP'} 
-            style={[styles.forgotPasswordText, { color: timer > 0 ? 'gray' : '#3D5CFF' }]} 
+            style={[styles.forgotPasswordText, { color: timer > 0 ? 'gray' : Colors.primary }]} 
           />
         </TouchableOpacity>
         <TextfieldComponent

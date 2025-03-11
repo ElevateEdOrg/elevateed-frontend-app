@@ -6,13 +6,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Colors } from '../constants/colors';
 
 interface RecentCourseCardProps {
   image: any;
   instructor: string;
   title: string;
   description: string;
-  progress: number; // Value between 0 and 1 (e.g., 0.5 for 50%)
+  progress: string; // Value between 0 and 1 (e.g., 0.5 for 50%)
 }
 
 const RecentCourseCard: React.FC<RecentCourseCardProps> = ({
@@ -22,10 +23,14 @@ const RecentCourseCard: React.FC<RecentCourseCardProps> = ({
   description,
   progress,
 }) => {
+
+  const numericProgress = parseFloat(progress)/100; 
+console.log("image: " + image);
+
   return (
     <View style={styles.card}>
 
-      <Image source={image} style={styles.courseImage} />
+      <Image source={{uri: image}} style={styles.courseImage} />
 
 
       <View style={styles.cardContent}>
@@ -45,14 +50,16 @@ const RecentCourseCard: React.FC<RecentCourseCardProps> = ({
 
    
         <ProgressView
-          progress={progress}
+          progress={isNaN(numericProgress) ? 0 : numericProgress}
           progressTintColor="#3D5CFF"
           trackTintColor="#555"
           style={styles.progressBar}
         />
 
         {/* Progress Percentage */}
-        <Text style={styles.progressText}>{Math.round(progress * 100)}% Completed</Text>
+        <Text style={styles.progressText}>
+        {`${(isNaN(numericProgress) ? 0 : numericProgress * 100).toFixed(2)}% Completed`}
+        </Text>
       </View>
     </View>
   );
@@ -60,7 +67,7 @@ const RecentCourseCard: React.FC<RecentCourseCardProps> = ({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#2E2E45',
+    backgroundColor: Colors.card_background,
     borderRadius: 12,
     padding: hp("1.5%"),
     marginVertical: hp("1%"),
@@ -72,10 +79,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   courseImage: {
-    width: wp("22%"),
-    height:hp("11%"),
+    width: wp("24%"),
+    height:hp("13%"),
     borderRadius: 10,
-    marginRight: wp("4%"),
+    marginRight: wp("3%"),
     resizeMode:'cover'
   },
   cardContent: {
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
   courseTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.secondary,
   },
   description: {
     fontSize: 12,
@@ -111,7 +118,7 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: 12,
-    color: '#fff',
+    color: Colors.secondary,
     marginTop: hp('0.2%'),
   },
 });

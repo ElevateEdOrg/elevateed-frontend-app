@@ -47,7 +47,7 @@ export const getChatList = createAsyncThunk(
       const response = await axiosInstance.get(
         `${Endpoints.CHAT_LIST}/${userId}`,
       );
-      console.log('RESPONSE OF get contact list API:', userId);
+      console.log('RESPONSE OF get contact list API:', response);
       return response.data;
     } catch (error: any) {
       console.error('GetChatList API Error:', error.message);

@@ -16,10 +16,14 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import SearchScreen from '../screens/student/Searchscreen/SearchScreen';
-import ProfileScreen from '../screens/student/Profilescreen/ProfilePage';
 import Contact from '../screens/student/Contactscreen/Contact';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import MessageScreen from '../screens/student/Message/MessageScreen';
+import CourseDetailScreen from '../screens/student/CourseDetail/CourseDetailScreen';
+import CartScreen from '../screens/student/Cart/CartScreen';
+import UserCoursesScreen from '../screens/student/UserCourse/UserCourseScreen';
+import ProfileScreen from '../screens/student/Profilescreen/ProfileScreen';
+import CreateCourseScreen from '../screens/instructor/CreateCourseScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,40 +37,34 @@ const MessageStack = () => {
     </Stack.Navigator>
   );
 };
-// const MessageStack = ({ navigation, route }) => {
-//   React.useLayoutEffect(() => {
-//     const routeName = getFocusedRouteNameFromRoute(route);
-//     if (routeName === "MessageScreen") {
-//       navigation.setOptions({ tabBarStyle: { display: "none" } });
-//     } 
-//     else {
-//       navigation.setOptions({ tabBarStyle: { display: "none" } });
-//     }
-//   }, [navigation, route]);
 
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name="Contact" component={Contact} options={{ headerShown: false }} />
-//       <Stack.Screen name="MessageScreen" component={MessageScreen} options={{ headerShown: false }} />
-//     </Stack.Navigator>
-//   );
-// };
-const FloatingSearchButton = () => {
+const Course1Stack= () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
+      <Stack.Screen name="CourseDetailScreen" component={CourseDetailScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="UserCoursesScreen" component={UserCoursesScreen} options={{ headerShown: false }} />
+      
+    </Stack.Navigator>
+  );
+};
+
+const FloatingSearchButton =({ userRole }: { userRole: string | null }) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   return (
     <TouchableOpacity
       style={styles.fab}
       activeOpacity={0.7}
-      onPress={() => navigation.navigate('Search')}>
+      onPress={() => navigation.navigate(userRole === 'instructor' ? 'CreateCourseScreen' : 'SearchScreen')}>
       <View style={styles.fabInner}>
-        <Icon name="search-outline" size={28} color="#FFFFFF" />
+      <Icon name={userRole === 'instructor' ? 'add' : 'search-outline'} size={28} color="#FFFFFF" />
       </View>
     </TouchableOpacity>
   );
 };
 
-const BottomNavigation: React.FC = () => {
+const BottomNavigation: React.FC<{ userRole: string | null }> = ({ userRole }) => {
   return (
     <>
       <Tab.Navigator
@@ -75,11 +73,27 @@ const BottomNavigation: React.FC = () => {
           tabBarShowLabel: true,
           tabBarStyle: styles.tabBar,
           headerShown: false,
+        
         }}>
         <Tab.Screen
           name="HomePage"
-          component={HomePage}
-          options={{
+          component={Course1Stack}
+          options={({ route }) => ({
+            // tabBarStyle: ((route) => {
+            //   const routeName = getFocusedRouteNameFromRoute(route) ?? ""
+            //   console.log(routeName)
+            //   if (routeName === 'CourseDetailScreen' || routeName === 'CartScreen') {
+            //     return { display: "none" }
+            //   }else{
+            //     return {backgroundColor: Colors.background,
+            //       position: 'absolute',
+            //       height: hp('10%'),
+            //       borderWidth: 0,
+            //       borderColor: 'transparent',
+            //       borderTopRightRadius: 20,
+            //       borderTopLeftRadius: 20}
+            //   }
+            // })(route),
             tabBarLabel: ({focused}) => (
               <Text
                 style={[
@@ -96,11 +110,11 @@ const BottomNavigation: React.FC = () => {
                 color={focused ? '#3D5CFF' : '#B8B8D2'}
               />
             ),
-          }}
+          })}
         />
         <Tab.Screen
           name="Course"
-          component={CourseScreen}
+          component={CartScreen}
           options={{
             tabBarLabel: ({focused}) => (
               <Text
@@ -108,12 +122,12 @@ const BottomNavigation: React.FC = () => {
                   styles.tabBarLabel,
                   focused && styles.tabBarLabelFocused,
                 ]}>
-                Course
+                Cart
               </Text>
             ),
             tabBarIcon: ({focused}) => (
               <Icon
-                name={focused ? 'book' : 'book-outline'}
+                name={focused ? 'cart' : 'cart-outline'}
                 size={24}
                 color={focused ? '#3D5CFF' : '#B8B8D2'}
               />
@@ -121,10 +135,10 @@ const BottomNavigation: React.FC = () => {
           }}
         />
         <Tab.Screen
-          name="Search"
-          component={SearchScreen}
+          name="SearchOrCreate"
+          component={userRole === 'Instructor' ? CreateCourseScreen: SearchScreen}
           options={{
-            tabBarButton: () => <FloatingSearchButton />,
+            tabBarButton: () => <FloatingSearchButton userRole={userRole}/>,
             tabBarIcon: ({focused}) => (
               <Icon
                 name="search"
@@ -172,28 +186,20 @@ const BottomNavigation: React.FC = () => {
             ),
           })}
         />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{
-            tabBarLabel: ({focused}) => (
-              <Text
-                style={[
-                  styles.tabBarLabel,
-                  focused && styles.tabBarLabelFocused,
-                ]}>
-                Profile
-              </Text>
-            ),
-            tabBarIcon: ({focused}) => (
-              <Icon
-                name={focused ? 'person' : 'person-outline'}
-                size={24}
-                color={focused ? '#3D5CFF' : '#B8B8D2'}
-              />
-            ),
-          }}
-        />
+      <Tab.Screen
+  name="Profile"
+  component={ProfileScreen}
+  options={{
+    tabBarLabel: ({ focused }) => (
+      <Text style={[styles.tabBarLabel, focused && styles.tabBarLabelFocused]}>
+        Profile
+      </Text>
+    ),
+    tabBarIcon: ({ focused }) => (
+      <Icon name={focused ? 'person' : 'person-outline'} size={24} color={focused ? '#3D5CFF' : '#B8B8D2'} />
+    ),
+  }}
+/>
       </Tab.Navigator>
     </>
   );
