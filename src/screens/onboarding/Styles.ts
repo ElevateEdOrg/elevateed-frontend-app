@@ -49,7 +49,7 @@ textAlign:'center',
   },
   activeIndicator: {
     width: 40,
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
   },
   footerContainer: {
     flexDirection: 'row',

@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     marginBottom: hp('3%'),
     backgroundColor: '#3E3E55',
     fontSize: 20,
-    color: '#fff',
+    color: Colors.secondary,
     textAlign: 'center',
     borderRadius: 8,
     marginHorizontal: wp('1%'),
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   footerText2: {
     fontFamily: TextStyles.mediumText,
     fontSize: 14,
-    color: '#3D5CFF',
+    color: Colors.primary,
     textDecorationLine: 'underline',
   },
 });

@@ -6,6 +6,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Colors } from '../constants/colors';
 
 interface RecentCourseCardProps {
   image: any;
@@ -66,7 +67,7 @@ console.log("image: " + image);
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#2E2E45',
+    backgroundColor: Colors.card_background,
     borderRadius: 12,
     padding: hp("1.5%"),
     marginVertical: hp("1%"),
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   courseTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.secondary,
   },
   description: {
     fontSize: 12,
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
   },
   progressText: {
     fontSize: 12,
-    color: '#fff',
+    color: Colors.secondary,
     marginTop: hp('0.2%'),
   },
 });

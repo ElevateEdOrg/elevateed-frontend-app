@@ -30,7 +30,7 @@ marginBottom:hp("21%")
        title: {
          fontSize: 20,
          fontWeight: 'bold',
-         color: '#fff',
+         color: Colors.secondary,
          marginBottom: 10,
        },
        instructor: {
@@ -40,13 +40,13 @@ marginBottom:hp("21%")
        },
        category: {
          fontSize: 14,
-         color: '#3D5CFF',
+         color: Colors.primary,
          marginBottom: 5,
        },
        price: {
          fontSize: 18,
          fontWeight: 'bold',
-         color: '#3D5CFF',
+         color: Colors.primary,
          marginBottom: 10,
        },
        description: {
@@ -56,7 +56,7 @@ marginBottom:hp("21%")
        },
        welcomeMsg: {
          fontSize: 16,
-         color: '#fff',
+         color: Colors.secondary,
          marginBottom: 20,
        },
        video: {
@@ -76,7 +76,7 @@ marginBottom:hp("21%")
          fontSize: 16,
        },
        buyButton: {
-         backgroundColor: '#3D5CFF',
+         backgroundColor: Colors.primary,
          padding: 12,
          borderRadius: 10,
          alignItems: 'center',
@@ -84,13 +84,13 @@ marginBottom:hp("21%")
          
        },
        buyText: {
-         color: '#fff',
+         color: Colors.secondary,
          fontWeight: 'bold',
          fontSize: 16,
        },
        loadingText: {
          textAlign: 'center',
-         color: '#fff',
+         color: Colors.secondary,
          marginTop: 20,
        },
        errorText: {
@@ -99,6 +99,6 @@ marginBottom:hp("21%")
          marginTop: 20,
        },
        cartButton: { backgroundColor: 'green', padding: 12, alignItems: 'center', marginVertical: 10, borderRadius: 5 },
-  cartText: { color: '#fff', fontSize: 16 },
+  cartText: { color: Colors.secondary, fontSize: 16 },
    });
    

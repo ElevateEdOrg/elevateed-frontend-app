@@ -9,6 +9,7 @@ import LabelComponent from '../../../components/LableComponent';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Colors } from '../../../constants/colors';
 interface LoginPageProps {
   navigation: NativeStackNavigationProp<any>;
 }
@@ -51,7 +52,7 @@ const UserCourseScreen = ({ navigation }: LoginPageProps) => {
   if (getUserCourseLoading) {
     return (
       <View style={styles.centered}>
-        <ActivityIndicator size="large" color="#fff" />
+        <ActivityIndicator size="large" color={Colors.secondary} />
       </View>
     );
   }

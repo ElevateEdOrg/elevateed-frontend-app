@@ -30,6 +30,7 @@ import {updateProfile} from '../../../state/profile/reducer';
 import Snackbar from 'react-native-snackbar';
 import Toast from 'react-native-toast-message';
 import { useAppDispatch } from '../../../state/hooks';
+import { Colors } from '../../../constants/colors';
 
 
 interface ProfilePageProps {
@@ -197,7 +198,7 @@ const ProfileScreen = ({navigation}: ProfilePageProps) => {
       <View style={styles.header}>
         <LabelComponent value="Account" style={styles.headerText} />
         <TouchableOpacity onPress={handleLogout}>
-          <Icon name="log-out-outline" size={26} color="#fff" />
+          <Icon name="log-out-outline" size={26} color={Colors.secondary} />
         </TouchableOpacity>
       </View>
 
@@ -205,7 +206,7 @@ const ProfileScreen = ({navigation}: ProfilePageProps) => {
       <View style={styles.profileSection}>
         <Image source={profileImage} style={styles.profileImage} />
         <TouchableOpacity style={styles.editIcon} onPress={handleImagePicker}>
-          <FontAwesome name="camera" size={10} color="#fff" />
+          <FontAwesome name="camera" size={10} color={Colors.secondary} />
         </TouchableOpacity>
       </View>
 

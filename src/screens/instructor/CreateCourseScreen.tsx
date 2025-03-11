@@ -241,7 +241,7 @@ export const CreateCourseScreen = ({route}) => {
         onPress={handleFileUpload}
         disabled={loading}>
         {loading ? (
-          <ActivityIndicator color="#fff" />
+          <ActivityIndicator color="Colors.primary" />
         ) : (
           <Text style={styles.createButtonText}>Create Course</Text>
         )}
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
   textField:{
     marginBottom:hp("2%")
   },
-  buttonText: {fontSize: 16, color: '#FFFFFF', fontWeight: 'bold'},
+  buttonText: {fontSize: 16, color: Colors.secondary, fontWeight: 'bold'},
   previewImage: {
     width: '100%',
     height: hp('25%'),
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: hp('3%'),
   },
-  createButtonText: {fontSize: 18, color: '#FFFFFF', fontWeight: 'bold'},
+  createButtonText: {fontSize: 18, color: Colors.secondary, fontWeight: 'bold'},
   disabledButton: {backgroundColor: '#888'},
   dropdownContainer: {
     marginVertical:hp("2%"),
@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontFamily: TextStyles.mediumText,
     fontSize: 16,
-    color: '#FFFFFF',
+    color: Colors.secondary,
   },
   dropdownItem: {
     paddingVertical: 10,

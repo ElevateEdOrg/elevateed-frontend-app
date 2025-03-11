@@ -8,6 +8,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import LabelComponent from '../../../components/LableComponent';
 import io from 'socket.io-client';
 import { RootState } from '../../../state/store';
+import { Colors } from '../../../constants/colors';
 
 const socket = io('http://ec2-54-242-88-21.compute-1.amazonaws.com', {
   path:'/api/chat/socket.io/',
@@ -133,7 +134,7 @@ console.log("Senderidddd",  item.sender_id);
         <LabelComponent value= {name ? name: "Message"} style={styles.headerText} />
       </View>
       {loading ? (
-         <ActivityIndicator size={30} color={'#fff'}/>
+         <ActivityIndicator size={30} color={Colors.secondary}/>
       ) : messages.length > 0 ? (
         <FlatList
           data={messages}
@@ -142,7 +143,7 @@ console.log("Senderidddd",  item.sender_id);
           removeClippedSubviews={false}
         />
       ) : (
-       <ActivityIndicator size="large" color="#fff" />
+       <ActivityIndicator size="large" color={Colors.secondary} />
       )}
       {/* {user?.full_name ? (
         <Text style={styles.footerText}>Logged in as: {user.full_name}</Text>
@@ -150,7 +151,7 @@ console.log("Senderidddd",  item.sender_id);
       <View style={styles.inputContainer}>
         <TextfieldComponent label={''} placeholder={'Type your message...'} value={message} onChangeText={setMessage} style={styles.input}/>
         <TouchableOpacity style={styles.sendButton} onPress={handleSend}>
-          <FontAwesome name="send" size={20} color="#fff" />
+          <FontAwesome name="send" size={20} color={Colors.secondary} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

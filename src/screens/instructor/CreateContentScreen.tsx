@@ -119,10 +119,10 @@ const styles = StyleSheet.create({
   header: { marginVertical: hp('3%') ,marginBottom:hp('5%')},
   headerText: { fontFamily: TextStyles.veryextraBoldText, fontSize: wp('8%'), fontWeight: '700', color: Colors.secondary },
   button: { backgroundColor: Colors.primary, padding: hp('2%'), borderRadius: 8, alignItems: 'center', marginVertical: hp('2%'), },
-  buttonText: { fontSize: 16, color: '#FFFFFF', fontFamily: TextStyles.mediumText },
+  buttonText: { fontSize: 16, color: Colors.secondary, fontFamily: TextStyles.mediumText },
   previewVideo: { width: '100%', height: hp('25%'), borderRadius: 10, marginTop: hp('2%') },
   createButton: { backgroundColor: Colors.primary, padding: hp('2%'), borderRadius: 30, alignItems: 'center', marginVertical: hp('3%') },
-  createButtonText: { fontSize: 18, color: '#FFFFFF', fontWeight: 'bold' },
+  createButtonText: { fontSize: 18, color: Colors.secondary, fontWeight: 'bold' },
 });
 
 export default CreateCourseContentScreen;

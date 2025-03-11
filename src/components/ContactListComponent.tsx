@@ -6,6 +6,7 @@ import {
   } from 'react-native-responsive-screen';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { image } from '../constants/images';
+import { Colors } from '../constants/colors';
 
 interface ContactCardProps {
   avatar: string | null;
@@ -18,7 +19,7 @@ interface ContactCardProps {
 
 const ContactCardComponent: React.FC<ContactCardProps> = ({ avatar, name, lastMessage, lastMessageTime, hasUnreadMessages, onPress }) => {
   return (
-    <TouchableOpacity style={[styles.card, { backgroundColor: hasUnreadMessages ? '#3D5CFF' : '#2E2E45' }]} onPress={onPress}>
+    <TouchableOpacity style={[styles.card, { backgroundColor: hasUnreadMessages ? Colors.primary : Colors.card_background }]} onPress={onPress}>
       <View style={styles.cardContent}>
        {avatar ? (
                   <Image source={{ uri: avatar }} style={styles.avatar} />
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.secondary,
   },
   message: {
     fontSize: 14,

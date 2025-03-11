@@ -6,6 +6,7 @@ import {
     heightPercentageToDP as hp,
   } from 'react-native-responsive-screen';
 import { image } from '../constants/images';
+import { Colors } from '../constants/colors';
 
 interface TopInstructorCardProps {
   images: string;
@@ -37,7 +38,7 @@ const TopInstructorCard: React.FC<TopInstructorCardProps> = ({ images, name, tot
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#2E2E45',
+    backgroundColor: Colors.card_background,
     borderRadius: 12,
     padding: hp("2%"),
     marginVertical: hp("1%"),
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
   },
   courses: {
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: 14,
-    color: '#fff',
+    color: Colors.secondary,
     marginLeft: 6,
   },
 });

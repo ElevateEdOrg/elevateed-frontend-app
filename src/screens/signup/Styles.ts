@@ -72,7 +72,7 @@ color:Colors.secondary
     flex: 1,
     fontFamily: TextStyles.mediumText,
     fontSize: 16,
-    color: '#FFFFFF',
+    color: Colors.secondary,
   },
   dropdownItem: {
     paddingVertical: 10,
@@ -103,7 +103,7 @@ color:Colors.secondary
   footerText2:{
     fontFamily:TextStyles.mediumText,
     fontSize:14,
-    color:'#3D5CFF',
+    color:Colors.primary,
     textDecorationLine: 'underline'
   }
 });

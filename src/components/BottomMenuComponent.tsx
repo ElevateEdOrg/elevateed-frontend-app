@@ -23,6 +23,7 @@ import CourseDetailScreen from '../screens/student/CourseDetail/CourseDetailScre
 import CartScreen from '../screens/student/Cart/CartScreen';
 import UserCoursesScreen from '../screens/student/UserCourse/UserCourseScreen';
 import ProfileScreen from '../screens/student/Profilescreen/ProfileScreen';
+import CreateCourseScreen from '../screens/instructor/CreateCourseScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -135,7 +136,7 @@ const BottomNavigation: React.FC<{ userRole: string | null }> = ({ userRole }) =
         />
         <Tab.Screen
           name="SearchOrCreate"
-          component={userRole === 'Instructor' ? CreateCourseScreen : SearchScreen}
+          component={userRole === 'Instructor' ? CreateCourseScreen: SearchScreen}
           options={{
             tabBarButton: () => <FloatingSearchButton userRole={userRole}/>,
             tabBarIcon: ({focused}) => (

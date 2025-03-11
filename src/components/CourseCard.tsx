@@ -8,6 +8,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../constants/colors';
 
 
 interface CourseCardProps {
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#2E2E45',
+    backgroundColor:Colors.card_background,
    borderRadius: 12,
       padding: hp("1.5%"),
       marginVertical: hp("1%"),
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.secondary,
   },
   instructor: {
     fontSize: 14,

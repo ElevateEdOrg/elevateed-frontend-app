@@ -7,6 +7,7 @@ import {
 import { TextStyles } from '../constants/textstyle';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { image } from '../constants/images';
+import { Colors } from '../constants/colors';
 
 interface CourseCardComponentProps {
   images: string;
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   courseTitle: {
     fontSize: 17,
     fontFamily: TextStyles.veryextraBoldText,
-    color: '#fff',
+    color: Colors.secondary,
     marginBottom: 4,
   },
   description: {
@@ -115,17 +116,17 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#3D5CFF',
+    color: Colors.primary,
   },
   buyButton: {
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
     paddingVertical: 8,
     paddingHorizontal: 14,
     borderRadius: 10,
     marginLeft:10
   },
   buyText: {
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
     fontSize: 14,
   },

@@ -40,6 +40,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {RootState} from '../../../state/store';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
+import { Colors } from '../../../constants/colors';
 interface HomePageProps {
   navigation: NativeStackNavigationProp<any>;
 }
@@ -220,7 +221,7 @@ await dispatch(getUserCourse());
           <LabelComponent value="Newest Courses" style={styles.carousalTitle} />
         </View>
         {loading.courses ? (
-          <ActivityIndicator size="large" color="#fff" />
+          <ActivityIndicator size="large" color={Colors.secondary} />
         ) : (
           <CarouselComponent
             style={styles.carousalComponent}
@@ -236,7 +237,7 @@ await dispatch(getUserCourse());
           style={styles.myCoursesContainer}
           onPress={() => navigation.navigate('UserCoursesScreen')}>
           <LabelComponent value="My Courses" style={styles.mycourseText} />
-          <FontAwesome name="arrow-right" size={24} color="#fff" />
+          <FontAwesome name="arrow-right" size={24} color={Colors.secondary} />
         </TouchableOpacity>
 
         {userRole === 'student' && (
@@ -246,7 +247,7 @@ await dispatch(getUserCourse());
               style={styles.carousalTitle1}
             />
             {loading.courses ? (
-              <ActivityIndicator size="large" color="#fff" />
+              <ActivityIndicator size="large" color={Colors.secondary} />
             ) : (
               <FlatList
                 data={userCourses}
@@ -279,7 +280,7 @@ await dispatch(getUserCourse());
               value="Recommanded for You"
               style={styles.carousalTitle1}
             />{loading.recommended ? (
-              <ActivityIndicator size="large" color="#fff" />
+              <ActivityIndicator size="large" color={Colors.secondary} />
             ) :    <FlatList
             data={recommandedCourses}
             horizontal
@@ -315,7 +316,7 @@ await dispatch(getUserCourse());
             style={styles.carousalTitle1}
           />
           {loading.instructors ? (
-            <ActivityIndicator size="large" color="#fff" />
+            <ActivityIndicator size="large" color={Colors.secondary} />
           ) : (
             <FlatList
               data={instructors}
@@ -339,7 +340,7 @@ await dispatch(getUserCourse());
         <View style={styles.browseCourseCard}>
           <LabelComponent value="Browse Course" style={styles.carousalTitle1} />
           {loading.categories ?(
-            <ActivityIndicator size="large" color="#fff" />
+            <ActivityIndicator size="large" color={Colors.secondary} />
           ) : <FlatList
           data={categories}
           horizontal

@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     marginTop: 50,
   },
   card: {
-    backgroundColor: '#2E2E45',
+    backgroundColor: Colors.card_background,
     borderRadius: 12,
     padding: 10,
     marginVertical: 10,
@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
   courseTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
+    color: Colors.secondary,
   },
   description: {
     fontSize: 12,
@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#3D5CFF',
+    color: Colors.primary,
     elevation:6
   },
   removeButton: {
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   removeButtonText: {
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
   },
   buttonContainer: {
@@ -105,22 +105,22 @@ export const styles = StyleSheet.create({
   clearButton: {
     backgroundColor: '#FF4D4D',
 justifyContent:'center',
-paddingHorizontal:wp('2%'),
+paddingHorizontal:wp('3%'),
     borderRadius: 8,
    height:hp('5%'),
-    marginRight: 10,
+   
     alignItems: 'center',
   },
   proceedButton: {
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
     padding: 12,
     borderRadius: 8,
     flex: 1,
-    marginLeft: 10,
+    
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
     fontSize: 15,
   },

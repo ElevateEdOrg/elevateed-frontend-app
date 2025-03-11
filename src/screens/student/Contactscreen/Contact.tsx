@@ -93,7 +93,7 @@ const Contact = () => {
       <View style={styles.header}>
       <LabelComponent value="Contacts" style={styles.headerText} />
       </View>
-      {loading || error ? <ActivityIndicator size={30} color={'#fff'}/>:  <View style={styles.cardContainer}>
+      {loading || error ? <ActivityIndicator size={30} color={Colors.secondary}/>:  <View style={styles.cardContainer}>
       <FlatList
       
         data={sortedChatList}

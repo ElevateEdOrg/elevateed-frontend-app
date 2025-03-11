@@ -36,11 +36,11 @@ export const styles = StyleSheet.create({
     position: 'absolute',
   
     right: 125,
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
     padding: 6,
     borderRadius: 15,
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: Colors.secondary,
   },
   profileImage: {
    
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   editText: {
-    color: '#fff',
+    color: Colors.secondary,
     fontSize: wp('4%'),
     fontWeight: 'bold',
   },

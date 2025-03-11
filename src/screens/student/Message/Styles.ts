@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
       },
   myMessage: {
     alignSelf: 'flex-end',
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
     padding: 10,
     borderRadius: 10,
     margin: 5,
@@ -33,14 +33,14 @@ export const styles = StyleSheet.create({
   },
   otherMessage: {
     alignSelf: 'flex-start',
-    backgroundColor: '#2E2E45',
+    backgroundColor: Colors.card_background,
     padding: 10,
     borderRadius: 10,
     margin: 5,
     maxWidth: '70%',
   },
   messageText: {
-    color: '#fff',
+    color: Colors.secondary,
   },
   messageTime: {
     fontSize: 8,
@@ -79,14 +79,14 @@ export const styles = StyleSheet.create({
   sendButton: {
     width: wp('15%'),
     height:hp('7%'),
-    backgroundColor: '#3D5CFF',
+    backgroundColor: Colors.primary,
   
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   sendButtonText: {
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
   },
 });

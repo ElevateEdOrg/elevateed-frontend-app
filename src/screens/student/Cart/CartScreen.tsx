@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet, Linking } from 'react-native';
+import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet, Linking, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Snackbar from 'react-native-snackbar';
@@ -9,10 +9,15 @@ import { styles } from './Styles';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useAppDispatch } from '../../../state/hooks';
 import { makePayment } from '../../../state/payment/reducer';
+import { useStripe } from '@stripe/stripe-react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const CartScreen = () => {
   const dispatch = useAppDispatch();
     const [cart, setCart] = useState<any[]>([]);
+    const {initPaymentSheet, presentPaymentSheet} = useStripe();
+  
     const navigation = useNavigation();
     useFocusEffect(
         useCallback(() => {
@@ -78,6 +83,19 @@ const CartScreen = () => {
       
             // Open Stripe Checkout URL
             Linking.openURL(paymentUrl);
+
+            //initialize the payment sheet
+            // const initResponse = await initPaymentSheet({
+            //   merchantDisplayName: 'notJust.dev',
+            //   paymentIntentClientSecret: response.data.session_id
+            // });
+            // if(initResponse.error){
+            //   console.log(initResponse.error);
+            //   Alert.alert("Something went wrong");
+            //   return;
+            // }
+            // // Present the payment sheet from stripe
+            // await presentPaymentSheet();
           } else {
             Snackbar.show({ text: 'Failed to initiate payment', duration: Snackbar.LENGTH_SHORT });
           }
@@ -93,7 +111,7 @@ const CartScreen = () => {
         
           <LabelComponent value="Cart" style={styles.headerText} />
           <TouchableOpacity style={styles.clearButton} onPress={handleClearCart}>
-            <Text style={styles.buttonText}>Clear Cart</Text>
+            <Text style={styles.buttonText}>Clear</Text>
           </TouchableOpacity>
         </View>
   
@@ -116,7 +134,7 @@ const CartScreen = () => {
           <View style={styles.bottomSection}>
             <Text style={styles.price}>₹{item.price}</Text>
             <TouchableOpacity style={styles.removeButton} onPress={() => handleRemoveItem(item.id)}>
-              <Text style={styles.removeButtonText}>Remove</Text>
+              <Icon name="trash" size={18} color={Colors.secondary}/>
             </TouchableOpacity>
           </View>
         </View>

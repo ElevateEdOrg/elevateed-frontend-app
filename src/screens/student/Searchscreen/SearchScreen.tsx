@@ -98,13 +98,13 @@ const SearchScreen = () => {
         />
         {query !== '' && (
           <TouchableOpacity onPress={clearSearch} style={styles.clearButton}>
-            <FontAwesome name="close" size={20} color="#fff" />
+            <FontAwesome name="close" size={20} color={Colors.secondary} />
           </TouchableOpacity>
         )}
       </View>
       <View style={styles.courseContainer}>
       {loading || searchLoading ? (
-        <ActivityIndicator size="large" color="#fff" />
+        <ActivityIndicator size="large" color={Colors.secondary} />
       ) : (
         <FlatList
         data={courses}

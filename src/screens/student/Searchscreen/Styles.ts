@@ -17,14 +17,14 @@ export const styles = StyleSheet.create({
       searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#2E2E45',
+        backgroundColor: Colors.card_background,
         borderRadius: 10,
         marginBottom: hp("1.5%"),
       },
       searchInput: {
         flex: 1,
         padding: 12,
-        color: '#fff',
+        color: Colors.secondary,
       },
       clearButton: {
         padding: 12,
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
        paddingBottom: hp("7%"),
       },
             loadingText: {
-        color: '#fff',
+        color: Colors.secondary,
         textAlign: 'center',
         marginVertical: 20,
       },

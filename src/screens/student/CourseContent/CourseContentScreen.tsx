@@ -88,7 +88,7 @@ const CourseContentScreen = ({navigation, route}: LoginPageProps) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <ActivityIndicator size="large" color="#fff" />
+        <ActivityIndicator size="large" color={Colors.secondary} />
       </View>
     );
   }
@@ -168,7 +168,7 @@ const CourseContentScreen = ({navigation, route}: LoginPageProps) => {
             name: courseContent.data.course.Instructor.full_name,
           })
         }>
-        <Text style={{fontFamily:TextStyles.veryextraBoldText, color:"#fff", fontSize:14, fontWeight:700}}>{"Send Message"}</Text>
+        <Text style={{fontFamily:TextStyles.veryextraBoldText, color:Colors.secondary, fontSize:14, fontWeight:700}}>{"Send Message"}</Text>
       </TouchableOpacity>
         </View>
        
@@ -274,7 +274,7 @@ const CourseContentScreen = ({navigation, route}: LoginPageProps) => {
       <Modal visible={isRatingModalVisible} transparent animationType="slide">
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={{color: '#fff', fontSize: 18, marginBottom: 10}}>Rate this Course</Text>
+            <Text style={{color: Colors.secondary, fontSize: 18, marginBottom: 10}}>Rate this Course</Text>
 
             <Rating
               type="star"
@@ -288,7 +288,7 @@ const CourseContentScreen = ({navigation, route}: LoginPageProps) => {
             />
 
             <TouchableOpacity style={styles.submitButton} onPress={submitRating}>
-              <Text style={{color: '#fff', fontSize: 16}}>Submit</Text>
+              <Text style={{color: Colors.secondary, fontSize: 16}}>Submit</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => setRatingModalVisible(false)}>

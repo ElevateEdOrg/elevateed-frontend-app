@@ -66,7 +66,7 @@ addButtonText: {
     alignItems: 'center',
   },
   sendMessageButtonText: {
-    color: '#fff',
+    color: Colors.secondary,
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -78,7 +78,7 @@ addButtonText: {
     marginBottom: hp('1%'),
   },
   lectureContainer: {
-    backgroundColor: '#2E2E45',
+    backgroundColor: Colors.card_background,
     padding: hp('2%'),
     borderRadius: hp('1.5%'),
     marginVertical: hp('1%'),
@@ -121,7 +121,7 @@ addButtonText: {
   navButtonText: {
     fontFamily: TextStyles.boldText,
     fontSize: hp('2%'),
-    color: '#FFF',
+    color: Colors.secondary,
   },
   modalContainer: {
     flex: 1,

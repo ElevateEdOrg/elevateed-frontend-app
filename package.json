@@ -10,7 +10,7 @@
     "test": "jest",
     "android_clean": "cd android && ./gradlew clean && cd ..",
     "android_development": "cross-env ENVFILE=.env.development react-native run-android",
-    "build_android_development": "cross-env ENVFILE=.env.development && cd android && ./gradlew app:assembleRelease && cd .."
+    "build_android_development": "set ENVFILE=.env.development && cd android && ./gradlew app:assembleRelease && cd .."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.1.1",
@@ -20,6 +20,7 @@
     "@react-navigation/native-stack": "^7.2.0",
     "@reduxjs/toolkit": "^2.6.0",
     "@shopify/flash-list": "^1.7.3",
+    "@stripe/stripe-react-native": "^0.42.0",
     "@types/react-native-vector-icons": "^6.4.18",
     "axios": "^1.7.9",
     "cross-env": "^7.0.3",

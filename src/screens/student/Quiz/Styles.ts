@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
   optionText: {
     fontFamily: TextStyles.boldText,
     fontSize: hp('2%'),
-    color: '#FFF',
+    color: Colors.secondary,
   },
   resultContainer: {
     backgroundColor: Colors.background,
@@ -69,7 +69,7 @@ export const styles = StyleSheet.create({
   doneButtonText: {
     fontFamily: TextStyles.boldText,
     fontSize: hp('2%'),
-    color: '#FFF',
+    color: Colors.secondary,
   },
   loader: {
     flex: 1,
